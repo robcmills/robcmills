@@ -1,0 +1,23 @@
+* {
+  margin: 0px;
+}
+
+.bar {
+  background: gray;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+.logo {
+  background: white;
+  display: inline-block;
+  width: 50px;
+  height: 32px;
+  padding: 4px;
+}
+.tab {
+  background: rgb(215,215,215);
+  display: inline-block;
+  width: auto;
+  height: 32px;
+  padding: 4px 8px;
+}

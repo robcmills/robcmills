@@ -1,0 +1,270 @@
+
+html, body {
+  background-color: lightgray;
+  height: 100%;
+}
+
+.brand {
+  background-color: black;
+  color: white;
+  font-weight: 100;
+  margin: 0px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+  position: fixed;
+  text-align: center;
+  top: 0px;
+  width: 100%;
+  z-index: 3;
+}
+
+#blackTop {
+  background-color: black;
+  color: white;
+  height: 100px;
+  position: relative;
+}
+
+.bottom {
+  bottom: 0px;
+  margin-top: 10px; 
+  margin-bottom: 0px; 
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+ul#nav {
+  height: 28px;
+  margin: 0 auto;
+  position: relative;
+  width: 500px;
+  z-index: 2;
+}
+
+#nav li {
+  color: lightgray;
+  display: inline-block;
+  font-weight: 200;
+  height: 28px;
+  line-height: 28px;
+  list-style: none;
+  margin-left: -5px;
+  text-align: center;
+  width: 100px;
+  position: relative;
+  z-index: 2;
+}
+#nav li:hover {
+  color: white;
+}
+#nav li.activeNavTab {
+  color: white;
+}
+
+div#active {
+  background-color: rgb(100,100,100);
+  height: 28px;
+  left: 29px;
+  margin-left: -5px;
+  position: absolute;
+  top: 0px;
+  width: 50px;
+  z-index: 1;
+}
+
+
+#page {
+  display: block;
+  height: 1110px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 600px;
+}
+#columnContainer {
+  height: 100%;
+  position: relative;
+}
+.column {
+  background-color: white;
+  display: block;
+  height: 100%;
+  padding: 0px;
+  position: absolute;
+  width: 600px;
+}
+
+#intro p {
+  padding: 0px 16px 0px 16px;
+}
+
+#skills {
+  left: 600px;
+  top: 0px;
+}
+#algorithms {
+  left: 1200px;
+  top: 0px;
+}
+#kyuplex {
+  left: 1800px;
+  top: 0px;
+}
+#links {
+  left: 2400px;
+  top: 0px;
+}
+
+#me {
+  float: left;
+  height: 118px;
+  margin: 0px 8px 8px 0px;
+  width: 89px;
+}
+#intp {
+  float: right;
+  height: 75px;
+  margin: 0px 0px 8px 8px;
+  width: 75px;
+}
+#wtw {
+  float: left;
+  height: 250px;
+  margin: 0px 16px 0px 16px;
+  width: 167px;
+}
+#japan {
+  display: block;
+  text-align: center;
+}
+
+table#skills {
+  margin: 8px auto;
+}
+#skills td {
+  padding: 4px;
+}
+tr > td:first-of-type {
+  text-align: right;
+}
+td > img {
+  height: 50px;
+  width: 50px;
+}
+
+#grayTop {
+  background-color: rgb(100,100,100);
+  color: white;
+  height: 56px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 600px;
+  z-index: 1;
+}
+#grayTop p {
+  margin: 0px;
+  padding: 4px 8px 4px 0px;
+  text-align: right;
+}
+#grayBottom {
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+}
+
+ul#algoTabs {
+  margin: 0px; 
+  position: relative;
+  width: 500px;
+  z-index: 2;
+}
+#algoTabs li {
+  display: inline-block;
+  font-weight: 200;
+  list-style: none;
+  padding: 4px 0px 4px 8px;
+  position: relative;
+  width: 140px;
+  z-index: 2;
+}
+
+#algoTabs li:hover {
+  color: black;
+}
+
+.activeAlgoTab {
+  color: black;
+}
+.algoTabBG {
+  background-color: white;
+  height: 28px;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 150px;
+  z-index: 1;
+}
+#shiftBG {
+  left: 150px;
+  top: 28px;
+}
+#monkBG {
+  left: 300px;
+  top: 28px;
+}
+
+.algoPane {
+  height: 1010px;
+  overflow: auto;
+  padding-top: 16px;
+  position: absolute;
+  top: 56px;
+  z-index: 2;
+}
+.algoPane p {
+  padding: 0px 16px 0px 16px;
+}
+.algoPane h4 {
+  text-indent: 16px;
+}
+
+#shiftPane {
+  opacity: 0.0;
+}
+#monkPane {
+  opacity: 0.0;
+}
+
+#monkPane pre {
+  border: none;
+  padding: 0px 16px 0px 16px;
+}
+#monkPane img {
+  display: block;
+  margin: 0 auto;
+}
+
+/*
+// Large desktop 
+//@media (min-width: 1200px) { ... }
+ 
+// Portrait tablet to landscape and desktop 
+@media (min-width: 768px) and (max-width: 979px), (min-width: 980px) {
+  #phone-nav {
+    display: none;
+  }
+}
+ 
+// Landscape phone to portrait tablet
+//@media (max-width: 767px) { ... }
+ 
+// Landscape phones and down 
+@media (max-width: 480px), (max-width: 767px) {
+  #wide-nav {
+    display: none;
+  }
+}
+*/
