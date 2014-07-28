@@ -1,228 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>robcmills</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="user-scalable=no, width=device-width, 
-    initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Robert Carter Mills">
+  <meta name="author" content="Robert C Mills">
+  <link rel="shortcut icon" href="img/favicon.ico">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/prettify.css">
-  <link rel="stylesheet" href="css/style.css">
+  <title>robcmills</title>
+
+  <!-- css -->
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="https://s3.amazonaws.com/robcmills.net/css/cover.css" rel="stylesheet"> -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- js -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 
-
 <body>
-  <h1 class='brand'> robcmills </h1>
-  <div id='blackTop'>
-    <div class='bottom'>
-      <ul id='nav'>
-        <div id='active'></div>
-        <li class='activeNavTab'>INTRO</li>
-        <li>SKILLS</li>
-        <li>ALGORITHMS</li>
-        <li>KYUPLEX</li>
-        <li>LINKS</li>
+
+  <div class="background"></div>
+  <div class="main">
+
+    <div class="head">
+
+      <div class='title svg-container'>
+        <svg id='title' viewBox="0 0 95 30" version="1.1">
+          <g id='robcmills'
+            stroke='white' stroke-width='1' fill='none'
+            stroke-dasharray='100px, 100px' stroke-dashoffset='0px'>
+
+            <path id='ro' d='M 5,25 l 0,-5 
+              c 0-2.76, 2.14-5, 5 -5 
+              c 2.76 0, 5 2.14, 5 5
+              c 0 2.76, 2.14 5, 5 5
+              c 2.76 0, 5-2.14, 5-5
+              c 0-2.76, -2.14-5, -5-5
+              c -2.76 0, -5 2.14, -5 5'/>
+            <path id='b' d='M 25 5 l 0 15
+              c 0 2.76, 2.14 5, 5 5
+              c 2.76 0, 5-2.14, 5-5
+              c 0-2.76, -2.14-5, -5-5
+              c -2.76 0, -5 2.14, -5 5'/>
+            <path id='cmi' d='M 40 15 m 3.53 1.464
+              q -1.53 -1.464, -3.53 -1.464
+              c -2.76 0, -5 2.14, -5 5
+              c 0 2.76, 2.14 5, 5 5
+              c 2.76 0, 5-2.14, 5-5
+              c 0-2.76, 2.14-5, 5 -5
+              c 2.76 0, 5 2.14, 5 5
+              l 0 5 l 0 -5
+              c 0-2.76, 2.14-5, 5 -5
+              c 2.76 0, 5 2.14, 5 5
+              l 0 2.5
+              c 0 1.38, 1.07 2.5, 2.5 2.5
+              c 1.38 0, 2.5-1.07, 2.5-2.5
+              l 0 -7.5'/>
+            <path id='l' d='M 75 5 l 0 17.5
+              c 0 1.38, 1.07 2.5, 2.5 2.5'/>
+            <path id='ls' d='M 80 5 l 0 17.5
+              c 0 1.38, 1.07 2.5, 2.5 2.5
+              l 5 0
+              c 1.38 0, 2.5-1.07, 2.5-2.5
+              c 0-1.38, -1.07-2.5, -2.5-2.5
+              c -1.38 0, -2.5 -1.07, -2.5-2.5
+              c 0-1.38, 1.07-2.5, 2.5 -2.5
+              l 2.5 0'/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="nav">
+      <ul>
+        <li>about</li>
+        <li>code</li>
+        <li>more</li>
       </ul>
     </div>
-  </div>
 
-  <div id="page">
-    <div id='columnContainer'>
-
-      <div class='column' id='intro'>
-        <img id='me' src='img/me.jpg'/>
-        <h3>Robert Carter Mills</h3>
-        <p> In terms of the <a href='http://www.myersbriggs.org'>Myers Brigg's personality types</a> I am <b>INTP</b>: <br> <b>I</b>ntroverted i<b>N</b>tuitive <b>T</b>hinking <b>P</b>erceptive <br></p><br>
-        <img id='intp' src='img/intp_logo.png'/>
-        <p class='quote'><i> "INTP's seek to develop logical explanations for everything that interests them. Theoretical and abstract, interested more in ideas than in social interaction. Quiet, contained, flexible, and adaptable. Have unusual ability to focus in depth to solve problems in their area of interest. Skeptical, sometimes critical, always analytical."</i></p><br>
-
-        <img id='wtw' src='img/way_things_work.jpg'/>
-        <p> My favorite book as a child was <a href='http://www.amazon.com/The-Things-Work-David-Macaulay/dp/0590429892/ref=pd_sim_b_5'>The Way Things Work</a> by David Macaulay, and my favorite toy was my latest Legos set. I think that pretty much sums up my strongest personality trait. I love learning about and understanding the world around me, and then using that knowledge to build things. </p>
-        <p> Secondly, I would say I also have a strong artistic / creative streak with a deep appreciation for efficiency and organization of form, function and design. The aesthetic I strive for is a minimal yet elegant and polished fascade that offers complexity and power nonetheless.  In a word: 
-        <a href='http://en.wikipedia.org/wiki/Shibui'> shibusa (渋さ)</a>
-        </p>
-
-        <p> <i>"A Japanese word which refers to a particular aesthetic of simple, subtle, and unobtrusive beauty. Shibusa objects appear to be simple overall but they include subtle details, such as textures, that balance simplicity with complexity. This balance of simplicity and complexity ensures that one does not tire of a shibusa object but constantly finds new meanings and enriched beauty that cause its aesthetic value to grow over the years... <br>
-        Shibusa walks a fine line between contrasting aesthetic concepts such as elegant and rough or spontaneous and restrained." </i>
-        </p>
-        <img id='japan' src='img/japan.jpg'/>
-        <br>
+    <div class="about content">
+      <div class="about-head-wrap">
+        <img src="img/me.jpg">
+        <h1 class="content-head">Robert Carter Mills</h1>
+      </div>
+      <div class='content-section'>
+        <p>By nature a programmer, engineer, and artist. I derive a deep sense of satisfaction from the process of understanding, designing, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, intuitive interfaces.<br>
+        <br>Having been a fast-paced FPS PC gamer most of my life, I have a particular passion for optimizing code and low latency. My highly tuned gaming configs made extensive use of key-bindings, which translated nicely to Vim-style modal editing. I use Sublime Text Vintage mode fluently, along with macros and scripts to quickly and productively manipulate code. </p> 
       </div>
 
-      <div class='column' id='skills'>
-        <table id='skills'>
-          <colgroup>
-            <col span="1" style="width: 40%;">
-            <col span="1" style="width: 10%;">
-            <col span="1" style="width: 10%;">
-            <col span="1" style="width: 40%;">
-          </colgroup> 
-          <tr>
-            <td> Javascript </td>
-            <td> <img src='img/js_logo.png'> </td>
-            <td> <img src='img/ember_logo.png'> </td>
-            <td> Ember.js </td>
-          </tr><tr>
-            <td> Python </td>
-            <td> <img src='img/python_logo.png'> </td>
-            <td> <img src='img/jquery_logo.png'> </td>
-            <td> jQuery </td>                               
-          </tr><tr>
-            <td> C++ / C </td>
-            <td> <img src='img/cpp_logo.png'> </td>
-            <td> <img src='img/bootstrap_logo.png'> </td>
-            <td> Twitter Bootstrap </td>                      
-          </tr><tr>
-            <td> Ruby </td>
-            <td> <img src='img/ruby_logo.png'> </td>
-            <td> <img src='img/gtk_logo.png'> </td>
-            <td> Gtk </td>           
-          </tr><tr>
-            <td> HTML </td>
-            <td> <img src='img/html5_logo.png'> </td>
-            <td> <img src='img/flask_logo.png'> </td>
-            <td> Flask </td>           
-          </tr><tr>
-            <td> CSS </td>
-            <td> <img src='img/css3_logo.png'> </td>
-            <td> <img src='img/irr_logo.png'> </td>
-            <td> irrlicht engine </td>           
-          </tr><tr>
-            <td> XML </td>
-            <td> <img src='img/xml_logo.png'> </td>
-            <td> <img src='img/bullet_logo.png'> </td>
-            <td> Bullet Physics Engine </td>                      
-          </tr><tr>
-            <td> Maxscript </td>
-            <td> <img src='img/3ds_logo.png'> </td>
-          </tr><tr>
-            <td> Extendscript </td>           
-            <td> <img src='img/jsx_logo.png'> </td>
-          </tr><tr>
-            <td> Japanese </td>
-            <td> <img src='img/japan_flag.png'> </td>
-          </tr><tr>
-            <td> Spanish </td>
-            <td> <img src='img/spain_flag.png'> </td>
-          </tr><tr>
-            <td> Italian </td>
-            <td> <img src='img/italian_flag.png'> </td>
-          </tr>
-        </table>
-      </div>   
+      <div class='content-section'>
+        <p> In terms of the <a href='http://www.myersbriggs.org'>Myers Brigg's personality types</a> I am <b>INTP</b>: <br> <b>I</b>ntroverted i<b>N</b>tuitive <b>T</b>hinking <b>P</b>erceptive <br></p><br>
+        <img id='intp' src='img/intp_logo.png'/>
+        <p class='quote'><i> "INTP's seek to develop logical explanations for everything that interests them. Theoretical and abstract, interested more in ideas than in social interaction. Quiet, contained, flexible, and adaptable. Have unusual ability to focus in depth to solve problems in their area of interest. Skeptical, sometimes critical, always analytical."</i></p>
+      </div>
 
-      <div class='column' id='algorithms'>
-        <div id='grayTop'>
-          <div id='grayBottom'>
-            <ul id='algoTabs'>
-              <li class='activeAlgoTab'> CUBE OF CUBES </li>
-              <div id='cubesBG' class='algoTabBG'></div>
-              <li> LANDSCAPE SHIFT </li>
-              <div id='shiftBG' class='algoTabBG'></div>
-              <li> MONK RACE </li>
-              <div id='monkBG' class='algoTabBG'></div>
-            </ul>
-          </div>
-        </div>
+      <div class='content-section'>
+        <img id='way_things_work' src='img/way_things_work.jpg'/>
+        <p> My favorite book as a child was <a href='http://www.amazon.com/The-Things-Work-David-Macaulay/dp/0590429892/ref=pd_sim_b_5'>The Way Things Work</a> by David Macaulay, and my favorite toy was my latest Legos set. I think that pretty much sums up my strongest personality trait. I love learning about and understanding the world around me, and then using that knowledge to build things. </p>
+      </div>
 
-        <div id='cubesPane' class='algoPane'>
-          <p> I've always had a keen interest in voxels and potential uses for them in terms of gameplay.  I'd like for kyuplex to integrate some voxel-like algorithms. <br> 
-          This problem is near and dear to my vision for where <a href='#'> kyuplex </a>is headed.  My early prototypes yielded physics calculations that were too intensive to perform on the cpu and frame rates dropped dramatically.  However, I'm excited for the coming release of <a href='http://bulletphysics.org/wordpress/?p=381'>Bullet 3.x</a> and the ability to push all rigid body calculations to the gpu! </p>
-
-          <h4> Problem: </h4>
-          <p> Given a cube composed of cubes with a total of s^3 cubes,
-          derive a generic algorithm to create connections between all adjacent cubes, but not diagonally. <br>
-          Connections must be made only once; after cubes[0] is connected to cubes[1] don't connect 1-0 <br>
-          All cubes are stored in one array, stacked in the order depicted by the diagram below. <br> 
-          Create connections by providing the constructor with the two cubes to be connected as shown: <br> 
+      <div class='content-section'>
+        <p> I would say I also have a strong artistic / creative streak with a deep appreciation for efficiency and organization of form, function and design. The aesthetic I strive for is a minimal, simple, elegant and polished form that unfolds complexity and power.  In a word: 
+        <a href='http://en.wikipedia.org/wiki/Shibui'> shibusa (渋さ)</a>
+        <br><br>
+        <i>"A Japanese word which refers to a particular aesthetic of simple, subtle, and unobtrusive beauty. Shibusa objects appear to be simple overall but they include subtle details, such as textures, that balance simplicity with complexity. This balance of simplicity and complexity ensures that one does not tire of a shibusa object but constantly finds new meanings and enriched beauty that cause its aesthetic value to grow over the years... <br>
+        Shibusa walks a fine line between contrasting aesthetic concepts such as elegant and rough or spontaneous and restrained." </i>
         </p>
+        <img id='shibusa' src='img/shibusa.jpg'/>
+      </div> 
+
+
+      <h2 class="content-title">skills</h2>
+
+      <div class='content-section'>
+        <div class='skill clearfix'>
+          <img src='img/3ds_logo.png'/>
+          <p><strong>3D Studio Max</strong><br> 
+          I've worked with a variety of 3d modeling programs since my first foray into Caligari Truspace in 1995. In high school I learned AutoCAD to model a CO2 car that I constructed in Woodshop class. More recently I designed and modeled a 
+          <a href="http://coordinatemotionpuzzlebox.blogspot.com/">
+            puzzle box
+          </a> 
+          in 3d Studio MAX that I then fabricated at SF Tech Shop. I also used 3DS to model the levels and environments of a 3D game I created called 
+          <a href='http://kyuplex.blogspot.com/'>kyuplex</a>. I learned MaxScript to convert the levels into a custom XML format that the game rendering engine could read.</p>
         </div>
-
-        <div id='shiftPane' class='algoPane'>
-          <h4> Concept </h4>
-          <p> So most traditional tile-based landscape paging methods will deallocate and delete geometry as the player moves away from it, and allocate 'new' memory for the geometry that is loaded on the edge the player is moving towards. I thought, "Why not just change the values of existing vertices?" Changing the positions is rather straight-forward, as well as the texture coordinates. But the challenge lay in the reordering of the indices. For every strip of vertices you 'shift' from one edge to the opposite, all those triangles are broken. How hard would it be to figure out how to reorder the indices? </p>
-          <h4> Data: </h4>
-          <p> For the landscape I used a simple tiled plane mesh as shown. X and Z values remained static and height values would be loaded from a grayscale heightmap. For the purposes of illustrating the algorithm simply, a tile width and height count of 2 will be used. 
-          </p>
+        <div class='skill'>
+          <img src='img/bootstrap_logo.png'/>
+          <p>Twitter Bootstrap</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/bullet_logo.png'/>
+          <p>Bullet Physics Library</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/cpp_logo.png'/>
+          <p>c++</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/css3_logo.png'/>
+          <p>CSS3</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/ember_logo.png'/>
+          <p>ember.js</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/flask_logo.png'/>
+          <p>Flask - Python Microframework</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/gtk_logo.png'/>
+          <p>GTK+</p>
         </div>
+        <div class='skill'>
+          <img src='img/html5_logo.png'/>
+          <p>HTML5</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/irr_logo.png'/>
+          <p>irrlicht - lightning fast realtime engine</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/js_logo.png'/>
+          <p>javascript</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/jquery_logo.png'/>
+          <p>jQuery</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/jsx_logo.png'/>
+          <p>Photoshop Scripting</p>
+        </div>       
+        <div class='skill'>
+          <img src='img/python_logo.png'/>
+          <p>Python</p>
+        </div>       
+      </div>
 
-        <div id='monkPane' class='algoPane'>
-          <h4> Benchmarking faster than the Monk! </h4>
-          <p> Another fun problem from RubyMonk.com solved.  This one is called Number Shuffle and much to my surprise the Monk's provided solution seemed fairly inefficient at first glance.  First I noticed the magic constants 3 ? 6 : 24
-          Ugly, and degeneralizing, but ok whatever.  But why would he use Array:shuffle and :uniq to find what is apparently a permutation? Isn't that like using a slot machine repeatedly until you get 24 jackpots?
-          Anyway, the proof is in the performance numbers: </p>
-          <h4> Problem: </h4>
-          <p> Give a 3 or 4 digit number with distinct digits, returna sorted array of all the unique numbers that can be formed with those digits. </p>
-          <h4> Example: </h4>
-          <p> Given: <code>123</code> Return: 
-          <code>[123, 132, 213, 231, 312, 321]</code> </p>
-          <pre class='prettyprint'>
-
-require 'benchmark'
-
-def my_number_shuffle(num)
-  digits = num.to_s.split(//)
-  digits.map!(&:to_i)
-  perm_a = digits.permutation.to_a
-  ret = perm_a.collect{ |a| a.join.to_i }
-  ret.sort!
-end
-
-def monk_number_shuffle(num)
-  no_of_combinations = num.to_s.size == 3 ? 6 : 24
-  digits = num.to_s.split(//)
-  combinations = []
-  combinations << digits.shuffle.join.to_i while combinations.uniq.size != no_of_combinations
-  combinations.uniq.sort
-end
-
-my_time = Benchmark.realtime do
-  1000.times { my_number_shuffle(123) } 
-end
-
-monk_time = Benchmark.realtime do
-  1000.times { monk_number_shuffle }
-end
-
-puts "My time: #{my_time} seconds"
-puts "Monk time: #{monk_time} seconds"
-          </pre>
-          <h4> Result: </h4>
-          <pre>
-
-Ruby 1.8.7 (2008-05-31 patchlevel 0) [x86-linux]
-[GCC 4.2.1 (LLVM, Emscripten 1.5, Emscripted-Ruby)]          
->
-My time: 4.51300 seconds.
-Monk time: 7.85400 seconds.
-          </pre>
-
-          <a href='http://rubymonk.com/learning/books/4-ruby-primer-ascent'>
-            <img src='img/ruby-primer-ascent.jpg'/>
-          </a>
-        </div>
-      </div>   
-
-      <div class='column' id='kyuplex'>
-        <h4>kyuplex</h4><br><br><br>
-        <h4>kyuplex</h4><br><br><br>
-        <h4>kyuplex</h4><br><br><br>
-      </div>        
-      <div class='column' id='links'>
-        <h4>links</h4><br><br><br>
-        <h4>links</h4><br><br><br>
-        <h4>links</h4><br><br><br>
-      </div>             
     </div>
+
   </div>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/lang-r.js"></script>
-  <script src="js/prettify.js"></script>
-  <script src="js/run_prettify.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+  <script src="js/snap.svg.js"></script>
+  <!-- <script src="https://s3.amazonaws.com/robcmills.net/js/js.js"></script> -->
   <script src="js/js.js"></script>
 </body>
 </html>

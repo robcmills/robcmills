@@ -1,56 +1,33 @@
-$(document).ready(function(){
 
-  $('#nav li').click(function() {
-    $('#nav li').removeClass('activeNavTab');
-    $(this).addClass('activeNavTab');
+animate_svg = function() {
+  Snap.animate(100, 0, function (val) {
+    var robcmills = Snap.select('#robcmills');
+    robcmills.attr({'stroke-dashoffset': val + 'px'});
+  }, 2000);   
+};
 
-    var num_letters = $(this).text().length; 
-    var width = num_letters * 10;
-    var left = $(this).position().left;
-    var adjusted = (100 - width)/2 + left;
+$(document).ready(function() {
 
-    $('#active').animate(
-      {left: adjusted + 'px', width: width},
-      600, 'swing'
-    );
-
-    var index = $('#nav li').index($(this));
-    $('#columnContainer').animate(
-      {left: (-index * 600) + 'px'},
-      600, 'swing'
-    );
+  $('.head').click(function(el) {
+    $('.nav li').removeClass('active');
+    $('.content').hide();
+    animate_svg();
   });
 
-
-  $('#algoTabs li').click(function() {
-    if(!$(this).hasClass('activeAlgoTab')){
-      $('#algoTabs li.activeAlgoTab').next().animate(
-        {top: '+=28px'},
-        400, 'swing'
-      );
-
-      var oldIndex = $('#algoTabs li').index($('li.activeAlgoTab'));
-      console.log('oldIndex', oldIndex);
-      $($('#algorithms .algoPane')[oldIndex]).animate(
-        {opacity: '0.0'},
-        400, 'swing'
-      );
-  
-      var newIndex = $('#algoTabs li').index(this);
-      console.log('newIndex', newIndex);
-      $($('#algorithms .algoPane')[newIndex]).animate(
-        {opacity: '1.0'},
-        400, 'swing'
-      );
-      
-
-      $('#algoTabs li').removeClass('activeAlgoTab');
-      $(this).addClass('activeAlgoTab');
-
-      $(this).next().animate(
-        {top: '-=28px'},
-        400, 'swing'
-      );
+  $('.nav li').click(function(el) {
+    if($(this).hasClass('active')) {
+      // nothing
+    } else {
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+      $('.content').hide();
+      $('.' + $(this).text()).show();
     }
+    animate_svg();
   });
+
+  $('.nav li:first').click();
+
+  animate_svg();
+
 });
