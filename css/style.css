@@ -117,7 +117,10 @@ html, body {
     margin: 0;
     padding: 1em; }
   .about .content-title {
-    background-color: DimGrey; }   
+    background-color: black; 
+    margin-top: 2em; }   
+  .about .cmd-up { margin-top: 0; text-align: right; }
+    .about .cmd-up:hover { cursor: pointer; opacity: 0.75; }
   .about .skill p { 
     vertical-align: top; }
     .skill img { float: left; margin-right: 1em; width: 75px; }

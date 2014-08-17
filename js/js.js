@@ -26,6 +26,10 @@ $(document).ready(function() {
     animate_svg();
   });
 
+  $('.cmd-up').click(function() {
+    window.scrollTo(0,0);
+  });
+
   $('.nav li:first').click();
 
   animate_svg();
