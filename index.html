@@ -25,7 +25,6 @@
 
 <body>
 
-  <div class="background"></div>
   <div class="main">
 
     <div class="head">
@@ -79,35 +78,28 @@
 
     <div class="nav">
       <ul>
-        <li>about</li>
-        <li>code</li>
-        <li>more</li>
+        <li class='tab about-tab'>about</li>
+        <li class='tab code-tab'>code</li>
+        <li class='tab more-tab'>more</li>
       </ul>
     </div>
 
     <div class="about content">
-      <div class="about-head-wrap">
+      <div class="content-head">
         <img src="img/me.jpg">
-        <h1 class="content-head">Robert Carter Mills</h1>
+        <h2 class="content-title">Robert Carter Mills</h2>
       </div>
       <div class='content-section'>
-        <br>
         <p>By nature a programmer, engineer, and artist. I derive a deep sense of satisfaction from the process of understanding, designing, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, intuitive interfaces.<br>
         <br>Having been a fast-paced FPS PC gamer most of my life, I have a particular passion for optimizing code and low latency. My highly tuned gaming configs made extensive use of key-bindings, which translated nicely to Vim-style modal editing. I use Sublime Text Vintage mode fluently, along with macros and scripts to quickly and productively manipulate code. </p> 
-      </div>
-
-      <div class='content-section'>
-        <p> In terms of the <a href='http://www.myersbriggs.org'>Myers Brigg's personality types</a> I am <b>INTP</b>: <br> <b>I</b>ntroverted i<b>N</b>tuitive <b>T</b>hinking <b>P</b>erceptive <br></p><br>
+        <br>
         <img id='intp' src='img/intp_logo.png'/>
-        <p class='quote'><i> "INTP's seek to develop logical explanations for everything that interests them. Theoretical and abstract, interested more in ideas than in social interaction. Quiet, contained, flexible, and adaptable. Have unusual ability to focus in depth to solve problems in their area of interest. Skeptical, sometimes critical, always analytical."</i></p>
-      </div>
-
-      <div class='content-section'>
+        <p> In terms of the <a href='http://www.myersbriggs.org'>Myers Brigg's personality types</a> I am <b>INTP</b>: <br> <b>I</b>ntroverted i<b>N</b>tuitive <b>T</b>hinking <b>P</b>erceptive <br></p><br>
+        <p class='quote'><i> "INTP's seek to develop logical explanations for everything that interests them. Theoretical and abstract, interested more in ideas than in social interaction. Quiet, contained, flexible, and adaptable. They have an unusual ability to focus in depth to solve problems in their area of interest. Skeptical, sometimes critical, always analytical."</i></p>
+        <br>
         <img id='way_things_work' src='img/way_things_work.jpg'/>
         <p> My favorite book as a child was <a href='http://www.amazon.com/The-Things-Work-David-Macaulay/dp/0590429892/ref=pd_sim_b_5'>The Way Things Work</a> by David Macaulay, and my favorite toy was my latest Legos set. I think that pretty much sums up my strongest personality trait. I love learning about and understanding the world around me, and then using that knowledge to build things. </p>
-      </div>
-
-      <div class='content-section'>
+        <br>
         <p> I would say I also have a strong artistic / creative streak with a deep appreciation for efficiency and organization of form, function and design. The aesthetic I strive for is a minimal, simple, elegant and polished form that unfolds complexity and power.  In a word: 
         <a href='http://en.wikipedia.org/wiki/Shibui'> shibusa (渋さ)</a>
         <br><br>
@@ -115,9 +107,8 @@
         Shibusa walks a fine line between contrasting aesthetic concepts such as elegant and rough or spontaneous and restrained." </i>
         </p>
         <br>
-        <img id='shibusa' src='img/shibusa.jpg'/>
       </div> 
-
+      <img id='shibusa' src='img/shibusa.jpg'/>
 
       <h2 class="content-title">skills</h2>
 
@@ -158,53 +149,118 @@
         </div>       
         <div class='skill'>
           <img src='img/css3_logo.png'/>
-          <p>CSS3</p>
+          <p><b>CSS3</b><br>
+          I am strong with CSS. While working at <a href='http://thegogame.com'>The Go Game</a> I was given sole responsibility for rebuilding the entire website from the ground up. We hired a design firm to do the bulk of the content and layout, which they did and then handed it off to me. I spent months cleaning up the css, optimizing and polishing the site for desktop and mobile on all major browsers, including Internet Explorer all the way down to 8.<br>
+          So yeah, I don't really struggle anymore to get divs where I want them to be.  
+          </p>
+        </div>       
+        <div class='skill'>
+          <img src='img/django_logo.png'/>
+          <p><b>Django</b><br>
+          I've built a few projects with Django: <a href='http://thegogame.com'>The Go Game website</a> with <a href='http://mezzanine.jupo.org'>Mezzanine</a>, an excellent open source CMS built on top of Django.  I've also put together a <a href='https://github.com/robcmills/django-base'>Django base template</a> that can be used to quickly and easily get a bare bones Django app up and running and deployed to an EC2 instance. Also I rebuilt <a href='https://secure.thegogame.com'> the secure credit card processor</a> for The Go Game using pure Django.<br>
+          I like Django. I'd enjoy working with it more.
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/ember_logo.png'/>
-          <p>ember.js</p>
+          <p><b>ember.js</b><br>
+          Ember is a modern javascript framework for building ambitious web applications.  Our real-world gaming platform that we developed at The Go Game uses Ember for all of its client side applications.  I've worked extensively with Ember, building, extending, refactoring, and fixing various components of our multi-application suite. The bulk of my experience working with javascript is in the context of Ember. And we have full test coverage. 
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/flask_logo.png'/>
-          <p>Flask - Python Microframework</p>
+          <p><b>Flask - Python Microframework</b><br>
+          Client-side we use Ember but on the server, our gaming platform is built on top of Flask, with a ton of custom code. I have some experience with Flask, having built a public gallery view extension.
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/gtk_logo.png'/>
-          <p>GTK+</p>
+          <p><b>GTK+</b><br>
+          I fell immediately in love with Linux when I discovered it, and soon after began learning to code. The first language I learned was Python, and the first UI library I used was pyGtk. Packing boxes, widgets, signals and handlers are like Saturday morning cartoons for me. Warm reminiscent joys when programming was fresh to me.
+          </p>
         </div>
         <div class='skill'>
           <img src='img/html5_logo.png'/>
-          <p>HTML5</p>
+          <p><b>HTML</b><br>
+          I think it goes without saying that I know HTML, but for completeness I'm including it here. 
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/irr_logo.png'/>
-          <p>irrlicht - lightning fast realtime engine</p>
+          <p><b><a href='http://irrlicht.sourceforge.net/'>irrlicht - lightning fast realtime engine</a></b><br>
+          For years and years I fantasized about creating my own 3d game, with no shortage of ideas that combined elements of many other games in unique ways. Finally once I had crossed the divide from computer power user to computer programmer, that dream seemed reachable. But it took a long time and a lot of hard work to go from Python to c to c++ to irrlicht. An open-source 3d rendering engine that I used for <a href='' class='kyuplex'>kyuplex</a>. It was a joyous journey and I think fondly on the days I was active in the irrlicht forums.
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/js_logo.png'/>
-          <p>javascript</p>
+          <p><b>javascript</b><br>
+          Again, like HTML I think it goes without being said that I am strong in javascript. Having worked with Ember mostly, I do tend to use jQuery, but would welcome the opportunity to dig into plain old javascript for a project. But only The Good Parts.
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/jquery_logo.png'/>
-          <p>jQuery</p>
+          <p><b>jQuery</b><br>
+          Another given, jQuery is pretty awesome and makes any web dev's life easier. I've written a few ajax methods too.
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/jsx_logo.png'/>
-          <p>Photoshop Scripting</p>
+          <p><b>Photoshop Scripting</b><br>
+          My father bought me Photoshop Version 3.1 in the early 90's when I was still a child. I've been using it ever since and know it like the back of my hand. Me and most kids of my generation. So once I learned to program it wasn't much of a jump to learn Photoshop scripting. Quite handy for bulk processing of images, or splitting a large tiled image of 77 cars into 77 small separate files. 
+          </p>
         </div>       
         <div class='skill'>
           <img src='img/python_logo.png'/>
-          <p>Python</p>
+          <p><b>Python</b><br>
+          The swiss army knife of programming languages! Python is the first language I learned and I have since grown to like it more and more, even though it's slower than molasses north of The Wall in Westeros. It's got some handy libraries though, such as requests, lxml, BeautifulSoup, and Kivy.
+          </p>
         </div>       
       </div>
 
       <h2 class="content-title cmd-up">⌘ + ▲</h2>
     </div>
 
+
+    <div class="code content">
+      <div class="content-head">
+        <img id='kx-cube' src="img/cube.jpg">
+        <h2 class="content-title">kyuplex</h2>
+      </div>
+      <div class='content-section'>
+        <p>
+        kyuplex is a portmanteau of cube + complex.  
+        It is a completely unique word I created to describe my programming project.  It is so unique in fact, that if you google it the entire first page of results are links to my dev blog about it, the github repository, and my website.  All without doing any SEO whatsoever. 
+        <br><br>
+        kyuplex is a programming exercise, learning experience, physics experiment, and manifestation of my obsession with geometric primitives.  kyuplex is my first major programming project after learning c++.  It uses irrlicht, an excellent open-source rendering engine and scene manager, as well as the Bullet physics library.  
+        <br><br>
+        kyuplex is a third-person simulation where you can control a cube with real physics and interact with other objects that have mass, and behave in realistic ways. For example, if you get going too fast and bump into another object with enough force, your cube will shatter accurately and you will lose points.  
+        <br><br>
+        kyuplex philosophy is about creating complexity from a simple cube. 
+        This is accomplished through a deceptively simple visual style that emphasizes innovative gameplay physics and skilled precise movement. Although at first the game seems very simple, complexity is slowly unfolded through a process I call evolving gameplay, in which each level presents the player with a unique challenge that introduces a new concept or dynamic. 
+        <br><br>
+        Evolving gameplay is an ambitious goal because it breaks the mold of traditional gameplay, where the game mechanics are fairly static and each level is just a presentation of new content. 
+        <br><br>
+        'kyu' is also the English romanization of a common Japanese bi-syllable, きゅ<br>
+        This sound can have many meanings and Kanji associated with it, depending on the context. My particular favorite is きゅうき pronouced /kyu:ki/ (IPA) 吸気 <br>
+        The first character can mean 'to inhale; to sip'<br>
+        The second 'mind; mood; spirit'<br>
+        And together the meaning becomes: inspiration
+        </p> 
+      </div>
+
+      <h2 class="content-title">January, 2015<br>gogame-website-bravo and seo</h2>
+      <div class='content-section'>
+        <p>We decided to move our website from Heroku to an Amazon EC2 instance. Our stack is Mezzanine Django CMS, gunicorn wsgi server, nginx. <br>
+        Getting the instance configured and the site set up and running was easy. The hard part was optimizing performance for seo. Mostly this consisted of enabling cacheing in nginx and indexing the database. Here's what my config finally looked like:<br>
+        </p> 
+      </div>
+
+    </div>
+
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <!-- <script src="js/bootstrap.min.js"></script> -->
+  <script src="js/jquery.js"></script>
   <script src="js/snap.svg.js"></script>
   <!-- <script src="https://s3.amazonaws.com/robcmills.net/js/js.js"></script> -->
   <script src="js/js.js"></script>

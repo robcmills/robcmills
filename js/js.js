@@ -1,28 +1,116 @@
+/*!
+  hash-string
+  Parse and stringify hash strings
+  based on query-string
+  https://github.com/sindresorhus/query-string
+  by Sindre Sorhus
+  MIT License
+*/
+(function () {
+  'use strict';
+  var hashString = {};
 
-animate_svg = function() {
+  hashString.parse = function (str) {
+    if (typeof str !== 'string') {
+      return {};
+    }
+
+    str = str.trim().replace(/^(\?|#)/, '');
+
+    if (!str) {
+      return {};
+    }
+
+    return str.trim().split('&').reduce(function (ret, param) {
+      var parts = param.replace(/\+/g, ' ').split('=');
+      var key = parts[0];
+      var val = parts[1];
+
+      key = decodeURIComponent(key);
+      // missing `=` should be `null`:
+      // http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+      val = val === undefined ? null : decodeURIComponent(val);
+
+      if (!ret.hasOwnProperty(key)) {
+        ret[key] = val;
+      } else if (Array.isArray(ret[key])) {
+        ret[key].push(val);
+      } else {
+        ret[key] = [ret[key], val];
+      }
+
+      return ret;
+    }, {});
+  };
+
+  hashString.stringify = function (obj) {
+    return obj ? Object.keys(obj).map(function (key) {
+      var val = obj[key];
+
+      if (Array.isArray(val)) {
+        return val.map(function (val2) {
+          return encodeURIComponent(key) + '=' + encodeURIComponent(val2);
+        }).join('&');
+      }
+
+      return encodeURIComponent(key) + '=' + encodeURIComponent(val);
+    }).join('&') : '';
+  };
+
+  if (typeof define === 'function' && define.amd) {
+    define(function() { return hashString; });
+  } else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = hashString;
+  } else {
+    window.hashString = hashString;
+  }
+})();
+
+function animate_svg(val) {
   Snap.animate(100, 0, function (val) {
     var robcmills = Snap.select('#robcmills');
     robcmills.attr({'stroke-dashoffset': val + 'px'});
   }, 2000);   
 };
 
+function getHashVal(key) {
+  key = key.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\#&]" + key + "=([^&#]*)"),
+    results = regex.exec(location.hash);
+  return results === null ? 
+    "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+};
+
+function setHashVal(key, val) {
+  var parsed = hashString.parse(location.hash);
+  parsed[key] = val;
+  location.hash = hashString.stringify(parsed);
+};
+
+function showTab(el) {
+  $('.nav .tab').removeClass('active');
+  $('.content').hide();
+  $(el).addClass('active');
+  var text = $(el).text();
+  $('.' + text).show();
+};
+
+function changeToTab(el) {
+  if(!$(el).hasClass('active')) {
+    showTab(el);
+    setHashVal('tab', $(el).text());
+  }
+};
+
+
 $(document).ready(function() {
 
   $('.head').click(function(el) {
-    $('.nav li').removeClass('active');
-    $('.content').hide();
     animate_svg();
   });
 
-  $('.nav li').click(function(el) {
-    if($(this).hasClass('active')) {
-      // nothing
-    } else {
-      $('.nav li').removeClass('active');
-      $(this).addClass('active');
-      $('.content').hide();
-      $('.' + $(this).text()).show();
-    }
+  $('.nav .tab').click(function(el) {
+    changeToTab(this);
     animate_svg();
   });
 
@@ -30,7 +118,12 @@ $(document).ready(function() {
     window.scrollTo(0,0);
   });
 
-  $('.nav li:first').click();
+  var tab = getHashVal('tab');
+  if(!tab) {
+    changeToTab($('.nav .tab:first'));
+  } else {
+    showTab($('.' + tab + '-tab'));
+  }
 
   animate_svg();
 

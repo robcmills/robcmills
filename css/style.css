@@ -5,7 +5,7 @@ p {
   margin: 0; }
 
 html, body {
-  background-color: black;
+  background-color: lightgrey;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%; 
   margin: 0; }
@@ -35,6 +35,7 @@ html, body {
         padding: 0.25em 0; } }   
   .head:hover .title {
     cursor: pointer; }
+  .head svg#title { height: 100px; }
 
 .nav {
   background-color: DimGrey;
@@ -46,7 +47,7 @@ html, body {
     padding: 0; }
   .nav li {
     display: inline-block;
-    margin-left: -4px;
+    margin-left: -5px;
     padding: 1em; }
   .nav li:hover {
     background-color: rgb(75,75,75);
@@ -55,14 +56,14 @@ html, body {
     background-color: black; }
 
 .background {
-  height: 100%;
+  background-color: white; }
+/*  height: 100%;
   left: 0;
   overflow-y: scroll;
   position: fixed;
   right: 0;
   text-align: center;
   z-index: 0; }
-  /*.background.blur { opacity: 0.5; }*/
   .background:before {
     background-image: url('../img/salt-flats.jpg');
     -webkit-background-size: cover;
@@ -70,13 +71,13 @@ html, body {
     background-position: center top;
     content: '';
     display: block;
-    height: 100%; /* For at least Firefox */
+    height: 100%; 
     left: 0;
     min-height: 100%;
     position: fixed;
     right: 0;
     width: 100%;
-    z-index: -1; }
+    z-index: -1; */ 
 
 .main {
   height: 100%;
@@ -84,41 +85,44 @@ html, body {
   text-align: center; 
   z-index: 1; }
 
-.content-section { background: rgba(255,255,255,0.9); padding: 1em; }
 
-.about {
-  /*background-color: white;*/
+.content {
   color: black;
   display: none;
-  margin: 0 auto;
+  margin: 2em auto;
   text-align: left;
-  width: 600px; }
+  width: 800px; }
   @media (max-width: 767px) {
-    .about {
+    .content {
+      margin: 1em auto;
       width: 350px; } }
   @media (max-width: 450px) {
-    .about {
+    .content {
+      margin: 0 auto;
       width: 100%; } }
+  .content-head img { 
+    float: left; 
+    margin: 0 1em 1em 0; }   
+  .content .content-title, .content .content-head {
+    color: white;
+    font-weight: 200;
+    margin: 0; }
+  .content .content-title {
+    background-color: black; 
+    padding: 1em; }   
+  .content-section { 
+    background: white; 
+    margin-bottom: 2em;
+    padding: 1em; }
 
-  .about-head-wrap {
-    background-color: black; }
+
+.about {}
   .about img {
-    margin-bottom: -3px;
+    /*margin-bottom: -3px;*/
     width: 20%; }
   .about #intp { float: right; margin-left: 1em; }
   .about #way_things_work { float: left; margin-right: 1em; }
-  .about #shibusa { width: 100%; margin-top: 1em; }
-  .about .content-head {
-    display: inline-block; 
-    vertical-align: bottom; }
-  .about .content-title, .about .content-head {
-    color: white;
-    font-weight: 200;
-    margin: 0;
-    padding: 1em; }
-  .about .content-title {
-    background-color: black; 
-    margin-top: 2em; }   
+  .about #shibusa { margin: -2em 0 2em 0; width: 100%; }
   .about .cmd-up { margin-top: 0; text-align: right; }
     .about .cmd-up:hover { cursor: pointer; opacity: 0.75; }
   .about .skill p { 
@@ -126,3 +130,6 @@ html, body {
     .skill img { float: left; margin-right: 1em; width: 75px; }
     .skill p { margin: 1em 0; }
 
+.code {
+  display: none; }
+  .code #kx-cube { height: 77px; }
