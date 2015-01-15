@@ -219,14 +219,45 @@
 
       <h2 class="content-title cmd-up">⌘ + ▲</h2>
     </div>
+    <!-- end about content -->
 
 
     <div class="code content">
+
+      <h2 class="content-title">January, 2015<br>Optimizing Django for seo</h2>
+      <div class='content-section'>
+        <p>First, we decided to move our website from Heroku to Amazon EC2 for a few reasons: 
+        <ol>
+          <li>Developer friendly. Heroku's <em>'ephemeral filesystem'</em> presented some challenges, such as thumbnail generation and scheduling cronjobs without access to the underlying file system. Solvable, but far easier to work with an EC2 EBS standard Ubuntu file structure.<br>
+          Also deploying minor code updates was clunky, because Heroku would instantiate a new instance and reinstall dependencies every time. It was slow and inefficient when you're just tweaking css.</li>
+          <li>Price. Heroku's subscription model cost significantly more than Amazon's utility model. Their <a href="http://aws.amazon.com/ec2/instance-types"><em>Burst Performance Instances</em></a> are a clever, efficient way of providing consistent baseline performance, with more cpu available during periods of heavy traffic. An ideal model for web servers hosting mostly static content.</li>
+          <li>Performance. Our MySQL database was already on RDS. Amazon's computing centers are positioned in their respective availability zones to be within a few miles of each other, connected by dedicated fiber, and efficient, custom routing. The latency between the different services (i.e. S3, EC2, RDS) is usually less than 1ms.<br>
+          Moving our database to the N. California zone and deploying our site to an EC2 instance in the same zone, our database query latency dropped significantly.</li> 
+        </ol>
+        Our stack is Mezzanine (a Django CMS), gunicorn (a wsgi server), and nginx. Getting an EC2 instance configured and the site set up and running was easy. Mezzanine provides an excellent template <a href="http://www.fabfile.com">fabric</a> file from which you can easily build custom methods to deploy your site as easily as one command line: <br>
+        <pre>    fab deploy</pre>
+        Mezzanine also provides custom cache middleware. I enabled this as well as serving static assets directly through the nginx config.<br>
+        I experimented with django-assets and django-compressor, but found them rather inefficient for our relatively small site.  The number of css/js files that needed to be concatenated and minified didn't justify the extra overhead required to find and compile them at run-time. The option to disable run-time compilation was present, but even then you can only specify which directories to search for static files. I preferred to just write a shell script that concatenated and minified the files manually, that way I could individualy regenerate only the files I knew I had just edited. I didn't want to give up any compute cycles in our preciously fast server response time.<br>
+        <pre>
+    cat vendor/normalize.css \
+      vendor/pickadate/classic.css \
+      vendor/pickadate/classic.date.css \
+      vendor/jquery.ui.css \
+      styles.css | cssmin > base.min.css
+        </pre>
+        After all of my efforts, our site is much faster and responsive. According to Google's PageSpeed analyzer, our site is now scoring 74 / 100 on mobile, 85 / 100 on desktop, and 100 / 100 user experience.
+        <br><br>
+        I &lt;3 optimizing!
+        </p> 
+      </div>
+
       <div class="content-head">
         <img id='kx-cube' src="img/cube.jpg">
         <h2 class="content-title">kyuplex</h2>
       </div>
       <div class='content-section'>
+        <a href='http://kyuplex.blogspot.com'>kyuplex.blogspot.com</a><br>
+        <a href='https://github.com/robcmills/kyuplex'>github.com/robcmills/kyuplex</a><br><br>
         <p>
         kyuplex is a portmanteau of cube + complex.  
         It is a completely unique word I created to describe my programming project.  It is so unique in fact, that if you google it the entire first page of results are links to my dev blog about it, the github repository, and my website.  All without doing any SEO whatsoever. 
@@ -236,26 +267,26 @@
         kyuplex is a third-person simulation where you can control a cube with real physics and interact with other objects that have mass, and behave in realistic ways. For example, if you get going too fast and bump into another object with enough force, your cube will shatter accurately and you will lose points.  
         <br><br>
         kyuplex philosophy is about creating complexity from a simple cube. 
-        This is accomplished through a deceptively simple visual style that emphasizes innovative gameplay physics and skilled precise movement. Although at first the game seems very simple, complexity is slowly unfolded through a process I call evolving gameplay, in which each level presents the player with a unique challenge that introduces a new concept or dynamic. 
+        This is accomplished through a deceptively simple visual style that emphasizes innovative gameplay physics and skilled precise movement. Although at first the game seems very simple, complexity is slowly unfolded through consistently evolving gameplay, in which each level presents the player with a unique challenge that introduces a new concept or dynamic. It is an ambitious goal because it breaks the mold of traditional gameplay, where the game mechanics are fairly static and each level is just a presentation of new content.
         <br><br>
-        Evolving gameplay is an ambitious goal because it breaks the mold of traditional gameplay, where the game mechanics are fairly static and each level is just a presentation of new content. 
+        kyuplex presented a number of fun challenges during its development, such as:
+        <br>
+        <a href="http://kyuplex.blogspot.com/2013/03/preventing-camera-gimbal-lock-under.html">preventing camera gimbal lock under multiple inheritance</a>
+        <br>
+        <a href="http://kyuplex.blogspot.com/2012/11/cube-of-cubes-connections-algorithm.html">cube of cubes connections algorithm</a>
         <br><br>
-        'kyu' is also the English romanization of a common Japanese bi-syllable, きゅ<br>
+        kyuplex is inspired by my favorite games: <b>Quake</b> (id), <b>DeFrag</b> (Quake 3 mod), and <b>Portal</b> (Valve).
+        <br><br>
+        'kyu' is also the English romanization of a common Japanese syllable, きゅ<br>
         This sound can have many meanings and Kanji associated with it, depending on the context. My particular favorite is きゅうき pronouced /kyu:ki/ (IPA) 吸気 <br>
-        The first character can mean 'to inhale; to sip'<br>
-        The second 'mind; mood; spirit'<br>
-        And together the meaning becomes: inspiration
-        </p> 
-      </div>
-
-      <h2 class="content-title">January, 2015<br>gogame-website-bravo and seo</h2>
-      <div class='content-section'>
-        <p>We decided to move our website from Heroku to an Amazon EC2 instance. Our stack is Mezzanine Django CMS, gunicorn wsgi server, nginx. <br>
-        Getting the instance configured and the site set up and running was easy. The hard part was optimizing performance for seo. Mostly this consisted of enabling cacheing in nginx and indexing the database. Here's what my config finally looked like:<br>
+        The first character can mean <em>'to inhale; to sip'</em><br>
+        The second <em>'mind; mood; spirit'</em><br>
+        And together the meaning becomes: <em>inspiration</em>
         </p> 
       </div>
 
     </div>
+    <!-- end code content -->
 
   </div>
 

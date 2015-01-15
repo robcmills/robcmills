@@ -95,7 +95,7 @@ html, body {
   @media (max-width: 767px) {
     .content {
       margin: 1em auto;
-      width: 350px; } }
+      width: 450px; } }
   @media (max-width: 450px) {
     .content {
       margin: 0 auto;
@@ -133,3 +133,7 @@ html, body {
 .code {
   display: none; }
   .code #kx-cube { height: 77px; }
+  .code .connections-algo { margin-top: 1em; }
+  .code .connections-algo img { margin: 0 0 1em; }
+  @media (max-width: 767px) {
+    .code .connections-algo img { width: 100%; } }
