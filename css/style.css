@@ -100,9 +100,7 @@ html, body {
     .content {
       margin: 0 auto;
       width: 100%; } }
-  .content-head img { 
-    float: left; 
-    margin: 0 1em 1em 0; }   
+  .content-head img { float: left; margin: 0 1em 1em 0; }
   .content .content-title, .content .content-head {
     color: white;
     font-weight: 200;
@@ -114,6 +112,7 @@ html, body {
     background: white; 
     margin-bottom: 2em;
     padding: 1em; }
+    .content-section img { width: 100%; }
 
 
 .about {}
@@ -132,7 +131,8 @@ html, body {
 
 .code {
   display: none; }
-  .code #kx-cube { height: 77px; }
+  .code #kx-cube { height: 77px; margin: 0 1em; }
+  .code #kyuplex { margin: 0 0 -5px; width: 100%; }
   .code .connections-algo { margin-top: 1em; }
   .code .connections-algo img { margin: 0 0 1em; }
   @media (max-width: 767px) {
