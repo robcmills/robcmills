@@ -10,17 +10,7 @@
 
   <title>robcmills</title>
 
-  <!-- css -->
-  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"> -->
-  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
-  <!-- <link href="https://s3.amazonaws.com/robcmills.net/css/cover.css" rel="stylesheet"> -->
   <link href="css/style.css" rel="stylesheet">
-
-  <!-- js -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 
 <body>
@@ -225,26 +215,29 @@
     <div class="code content">
 
       <div class="content-head">
-        <h2 class="content-title">Setting up crontab on EC2</h2>
+        <h2 class="content-title">A brief tour of Breadcrumb</h2>
       </div>
       <div class='content-section'>
         <p>
-        talk about how I set up scheduled db backups and media sync using awscli...
+        Breadcrumb is our proprietary, multi web application, cross-browser real-world gaming platform. It is built with Flask and MongoDB on the back end and client side applications in Ember.js. It is the most complex aplication suite I have ever had the pleasure of working on. I have worked on many small and large pieces of Breadcrumb, added features, fixed bugs, and wrote tests for everything. 
         </p>
+        <img src="img/breadcrumb-create.png">
       </div>
 
-      <h2 class="content-title">Optimizing page speed for seo<br>
-      <span>January, 2015</span></h2>
+      <h2 class="content-title">Optimizing a Django website</h2>
       <div class='content-section'>
-        <p>First, we decided to move our website from Heroku to Amazon EC2 for a few reasons: 
+        <p><em>January, 2015</em><br>
+        Here are a few of the steps I took to optimize our website for faster page loads and thus better SEO: 
+        First, we decided to move our website from Heroku to Amazon EC2 for a few reasons: 
         <ol>
           <li>Developer friendly. Heroku's <em>'ephemeral filesystem'</em> presented some challenges, such as thumbnail generation and scheduling cronjobs without access to the underlying file system. Solvable, but far easier to work with an EC2 EBS standard Ubuntu file structure.<br>
           Also deploying minor code updates was clunky, because Heroku would instantiate a new instance and reinstall dependencies every time. It was slow and inefficient when you're just tweaking css.</li>
-          <li>Price. Heroku's subscription model cost significantly more than Amazon's utility model. Their <a href="http://aws.amazon.com/ec2/instance-types"><em>Burst Performance Instances</em></a> are a clever, efficient way of providing consistent baseline performance, with more cpu available during periods of heavy traffic. An ideal model for web servers hosting mostly static content.</li>
-          <li>Performance. Our MySQL database was already on RDS. Amazon's computing centers are positioned in their respective availability zones to be within a few miles of each other, connected by dedicated fiber, and efficient, custom routing. The latency between the different services (i.e. S3, EC2, RDS) is usually less than 1ms.<br>
-          Moving our database to the N. California zone and deploying our site to an EC2 instance in the same zone, our database query latency dropped significantly.</li> 
+          <li>Price. Heroku's dynos cost significantly more than Amazon's <a href="http://aws.amazon.com/ec2/instance-types"><em>Burst Performance Instances</em></a>, a clever, efficient way of providing consistent baseline performance, with more cpu available during periods of heavy traffic. An ideal model for web servers hosting mostly static content.</li>
+          <li>Performance. Our MySQL database was already on RDS. Amazon's computing centers are positioned in their respective availability zones to be within a few miles of each other, connected by dedicated fiber, and efficient, custom routing. The latency between the different services (i.e. S3, EC2, RDS) is usually less than 1ms.
+          After moving our database to the N. California zone and deploying our site to an EC2 instance in the same zone, our database query latency dropped significantly.</li> 
+          <li>Training. Our gaming platform runs on an EC2 instance so the more I could work with and learn about EC2 the better.</li> 
         </ol>
-        Our stack is Mezzanine (a Django CMS), gunicorn (a wsgi server), and nginx. Getting an EC2 instance configured and the site set up and running was easy. Mezzanine provides an excellent template <a href="http://www.fabfile.com">fabric</a> file from which you can easily build custom methods to deploy your site as easily as one command line: <br>
+        Our website is built on a stack with Mezzanine (a Django CMS), gunicorn (a wsgi server), and nginx. Getting an EC2 instance configured and the site set up and running was easy. Mezzanine provides an excellent template <a href="http://www.fabfile.com">fabric</a> file from which you can easily build custom methods to deploy your site as easily as one command line: <br>
         <pre>    fab deploy</pre>
         Mezzanine also provides custom cache middleware. I enabled this as well as serving static assets directly through the nginx config.<br>
         I experimented with django-assets and django-compressor, but found them rather inefficient for our relatively small site.  The number of css/js files that needed to be concatenated and minified didn't justify the extra overhead required to find and compile them at run-time. The option to disable run-time compilation was present, but even then you can only specify which directories to search for static files. I preferred to just write a shell script that concatenated and minified the files manually, that way I could individualy regenerate only the files I knew I had just edited. I didn't want to give up any compute cycles in our preciously fast server response time.<br>
@@ -314,10 +307,8 @@
 
   </div>
 
-  <!-- <script src="js/bootstrap.min.js"></script> -->
   <script src="js/jquery.js"></script>
   <script src="js/snap.svg.js"></script>
-  <!-- <script src="https://s3.amazonaws.com/robcmills.net/js/js.js"></script> -->
   <script src="js/js.js"></script>
 </body>
 </html>
