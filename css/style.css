@@ -13,11 +13,13 @@ p {
 .clearfix {}
   .clearfix:before, .clearfix:after
   .skill:before, .skill:after,
+  .commits-section:before, .commits-section:after,
   .content-section:before, .content-section:after {
     content: " ";
     display: table; }
   .clearfix:after,
   .skill:after,
+  .commits-section:after,
   .content-section:after {   
     clear: both; }
 
@@ -76,7 +78,6 @@ p {
       width: 450px; } }
   @media (max-width: 450px) {
     .content {
-      margin: 0 auto;
       width: 100%; } }
   .content-head img { float: left; margin: 0 1em 1em 0; }
   .content .content-title, .content .content-head {
@@ -114,5 +115,9 @@ p {
   .code #kyuplex { margin: -1px 0 -5px; width: 100%; }
   .code .connections-algo { margin-top: 1em; }
   .code .connections-algo img { margin: 0 0 1em; }
+  .code .commits-section { margin-bottom: 2em; } 
+    .commits-section img { float: left; margin: 0 1em 0 0; width: 50%; }
+    @media (max-width: 767px) {
+    .commits-section img { float: none; margin: 0; width: 100%; } }
   @media (max-width: 767px) {
     .code .connections-algo img { width: 100%; } }
