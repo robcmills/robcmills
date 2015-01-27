@@ -234,16 +234,8 @@
           <p>
             <a href="https://github.com/thegogame/breadcrumb">github.com/thegogame/breadcrumb</a><br>
             <em>Oct 2012 - Jan 2015</em><br>
-            Contributions to master, excluding merge commits
-          </p>
-        </div>
-
-        <div class='commits-section'>
-          <img class="commits" src='img/website-alpha-commits.png'>
-          <p>
-            <a href="https://github.com/thegogame/gogame-newsite">github.com/thegogame/website-alpha</a><br>
-            <em>Apr 2013 – Jan 2015</em><br>
-            Contributions to master, excluding merge commits
+            <a href="http://play.thegogame.com" target="_blank">play.thegogame.com</a><br>
+            Built groups and sequences features, mission lists, mission search, facebook sharing in-app, gamezone edit interface, recursive media importer feature, media auto orientation, flavors interface, an S3 uploader ember component, and much more...
           </p>
         </div>
 
@@ -252,9 +244,23 @@
           <p>
             <a href="https://github.com/thegogame/website-bravo">github.com/thegogame/website-bravo</a><br>
             <em>Apr 2013 – Jan 2015</em><br>
-            Contributions to master, excluding merge commits
+            <a href="http://thegogame.com" target="_blank">thegogame.com</a>
+            <br>           
+            I rebuilt our entire website site from the ground up (alpha). Then I recreated it again on EC2 with a number of optimizations (bravo).
           </p>
         </div>
+
+        <div class='commits-section'>
+          <img class="commits" src='img/client-portal-commits.png'>
+          <p>
+            <a href="https://github.com/thegogame/client-portal">github.com/thegogame/client-portal</a><br>
+            <em>Jul 2014 – Jan 2015</em><br>
+            <a target="_blank" href='https://secure.thegogame.com'>secure.thegogame.com/cc</a>
+            <br>
+            A credit card payment processing site I built with pure Django and a custom gateway for Django-merchant.
+          </p>
+        </div>
+
       </div>
   
       <div class="content-head">
@@ -278,7 +284,11 @@
         This is the client facing app that players see and interact with on their phones. We use trigger.io's Forge tool to compile our web app into a native iOS app. But the game is also playable through any web browser, so players can use their Androids and Blackberries. It is through this app that players receive instructions and missions, enter codes and answers, and take creative photos and videos. <br>
         <br>
         <b>Gallery</b><br>
-        After each game Breadcrumb automatically generates a password-protected public gallery so players can relive all the embarrasing and hilarious moments.
+        After each game Breadcrumb automatically generates a password-protected public gallery so players can relive all the embarrasing and hilarious moments.<br>
+        <br>
+        <b>Local judging app</b><br>
+        When each game ends, all the hilarious photos and videos that players took are imported into the Local Judging application, where the game runner can present them at the ending venue for all to see.  There is a voting mechanism and points are tallied to determine winners.<br>
+        The judging app is written in python and compiled to an OSX app with Py2App. It also has a feature that uses gphoto2 to pull media directly from phones, with a smart matching algorithm based on the timestamp. 
         </p>
       </div>
 
