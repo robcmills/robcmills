@@ -323,14 +323,51 @@
       </div>
 
       <div class="content-head">
-        <h2 class="content-title">Splitting the US into 50 SVG states</h2>
+        <h2 class="content-title">Splitting the SVG US into 50 PNG's</h2>
       </div>
       <div class='content-section'>
-        <a href='http://thegogame.com/team-building/locations'>thegogame.com/team-building/locations</a>
-        <br><br>
+        <img id='CA' src="img/CA.png">
+        <p>While rebuilding our website I needed to create a locations page with a map of the US. Our site has pages for every state and most major cities because we want to target location specific keywords. Our old site had a fun flash based map with animated rollovers for every state. The design firm we hired had just handed over a page with a low resolution image of the US. I opted to do better.<br>
+        I started with <a href="http://commons.wikimedia.org/wiki/File:Blank_US_Map.svg" target="_blank">this excellent SVG map</a> of the US from wikimedia.<br>
+        I cleaned up the svg a bit, dropped it into the page and added rollover highlighting and clickable states. Nice and clean, goes well with the aesthetic of our site:<br>
+        <a href='http://thegogame.com/team-building/locations'>thegogame.com/team-building/locations</a><br>
+        <br>
         <p>
-        talk about how I improved the us map for our site...
+        But wait there's more! Then I wanted to split up the map and render a png of each state for each state page. Doing it manually would have taken forever, so I wrote a few scripts.<br>
+        First I used javascript to collect the bounding boxes:<br>
         </p>
+        <pre>
+    var states = [];
+    var bbox;
+    $('.state').each(function(idx, state) {
+      bbox = state.getBBox();
+      states.push('{' + $(state).attr('id') + ': ' +
+      bbox.x.toPrecision(4) + ' ' + bbox.y.toPrecision(4) + ' ' + 
+      bbox.width.toPrecision(4) + ' ' + bbox.height.toPrecision(4) + '}');
+    });        
+        </pre>
+        <p>
+        Then with that information I could parse the US svg with python and output state svg files:
+        </p>
+        <pre>
+    states_dims = {
+        'MI': "567.5 74.74 130.7 137.6", 
+        ...
+        'FL': "643.1 438.4 159.4 134.1", 
+    }
+    with open('states.svg', 'r') as f:
+        lines = f.readlines()
+    for line in lines:
+        m = re.search(r'id="(..)"', line)
+        abbrev = m.group(1)
+        with open(abbrev + '.svg', 'w') as dest:
+            view_box = states_dims[abbrev]
+            dest.writelines([
+                u'&lt;svg class="state_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="' + view_box + u'"&gt;\n',
+                u'&lt;style type="text/css"&gt; .state {fill:#f47421; stroke:#fff; stroke-width:0.75; stroke-opacity:1; } &lt;/style&gt;\n',
+                line, u'&lt;/svg&gt;'])
+        </pre>
+        <p>Door number 3! I then wrote a Photoshop script to convert all those svg files into png's. Done and done. Fun!</p>
       </div>
 
       <div class="content-head">
