@@ -65,12 +65,13 @@
         </svg>
       </div>
     </div>
+    <!-- end head -->
 
     <div class="nav">
       <ul>
-        <li class='tab about-tab'>about</li>
-        <li class='tab code-tab'>code</li>
-        <li class='tab more-tab'>more</li>
+        <li x='about' class='tab about-tab'>about</li>
+        <li x='code' class='tab code-tab'>code</li>
+        <li x='more' class='tab more-tab'>more</li>
       </ul>
     </div>
 
@@ -80,7 +81,7 @@
         <h2 class="content-title">Robert Carter Mills</h2>
       </div>
       <div class='content-section'>
-        <p>By nature a programmer, engineer, and artist. I derive a deep sense of satisfaction from the process of understanding, designing, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, intuitive interfaces.<br>
+        <p>I am by nature a programmer, engineer, and artist. I derive a deep sense of satisfaction from the process of understanding, designing, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, intuitive interfaces.<br>
         <br>Having been a fast-paced FPS PC gamer most of my life, I have a particular passion for optimizing code and low latency. My highly tuned gaming configs made extensive use of key-bindings, which translated nicely to Vim-style modal editing. I use Sublime Text Vintage mode fluently, along with macros and scripts to quickly and productively manipulate code. </p> 
         <br>
         <img id='intp' src='img/intp_logo.png'/>
@@ -206,8 +207,14 @@
           </p>
         </div>       
       </div>
-
-      <h2 class="content-title cmd-up">⌘ + ▲</h2>
+      
+      <div class="nav">
+        <ul>
+          <li x='about' class='tab about-tab'>about</li>
+          <li x='code' class='tab code-tab'>code</li>
+          <li x='more' class='tab more-tab'>more</li>
+        </ul>
+      </div>
     </div>
     <!-- end about content -->
 
@@ -218,7 +225,7 @@
         <h2 class="content-title">Github summary 2014</h2>
       </div>
       <div class='content-section'>
-        <p>Most of my commits this past year have been into private repositories. Here is a summary:
+        <p>Most of my commits this past year have been into private repositories. The following is a summary of the major projects I have been working on. I've excluded a number of smaller miscellaneous repos for the sake of brevity. 
         </p>
         <img src='img/git-contributions.png'>
 
@@ -248,7 +255,6 @@
             Contributions to master, excluding merge commits
           </p>
         </div>
-
       </div>
   
       <div class="content-head">
@@ -352,10 +358,36 @@
         </p> 
       </div>
 
+      <div class="nav">
+        <ul>
+          <li x='about' class='tab about-tab'>about</li>
+          <li x='code' class='tab code-tab'>code</li>
+          <li x='more' class='tab more-tab'>more</li>
+        </ul>
+      </div>
     </div>
     <!-- end code content -->
 
+    <div class="more content">
+      <div class='links content-section'>
+        <p>Google Plus:
+          <a href="http://google.com/+RobertCarterMills">google.com/+RobertCarterMills</a>
+        </p>
+        <p>I designed and built a wooden coordinate motion puzzle box:
+          <a href="http://coordinatemotionpuzzlebox.blogspot.com">coordinatemotionpuzzlebox.blogspot.com</a>
+        </p>
+        <p>My QuakeLive custom HUD's:
+          <a href="http://qlhud.net/author/orInge">qlhud.net/author/orInge</a>
+        </p>
+        <p>A fun little pure javascript project:
+          <a href="http://robcmills.net/accutouch">robcmills.net/accutouch</a>
+        </p>
+      </div>
+    </div> 
+    <!-- end more content -->
+  
   </div>
+  <!-- end main -->
 
   <script src="js/jquery.js"></script>
   <script src="js/snap.svg.js"></script>

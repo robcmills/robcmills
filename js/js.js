@@ -87,18 +87,19 @@ function setHashVal(key, val) {
   location.hash = hashString.stringify(parsed);
 };
 
-function showTab(el) {
+function showTab(tab) {
   $('.nav .tab').removeClass('active');
   $('.content').hide();
-  $(el).addClass('active');
-  var text = $(el).text();
-  $('.' + text).show();
+  $('.nav .tab[x="' + tab + '"]').addClass('active');
+  $('.' + tab).show();
 };
 
 function changeToTab(el) {
   if(!$(el).hasClass('active')) {
-    showTab(el);
-    setHashVal('tab', $(el).text());
+    var tab = $(el).attr('x');
+    showTab(tab);
+    setHashVal('x', tab);
+    window.scrollTo(0,0);
   }
 };
 
@@ -114,15 +115,15 @@ $(document).ready(function() {
     animate_svg();
   });
 
-  $('.cmd-up').click(function() {
-    window.scrollTo(0,0);
-  });
+  // $('.cmd-up').click(function() {
+  //   window.scrollTo(0,0);
+  // });
 
-  var tab = getHashVal('tab');
+  var tab = getHashVal('x');
   if(!tab) {
     changeToTab($('.nav .tab:first'));
   } else {
-    showTab($('.' + tab + '-tab'));
+    showTab(tab);
   }
 
   animate_svg();

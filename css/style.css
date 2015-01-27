@@ -95,9 +95,9 @@ p {
 
 
 .about {}
-  .about img {
-    /*margin-bottom: -3px;*/
-    width: 20%; }
+  .about img { width: 25%; }
+    @media (max-width: 767px) {
+    .about img { width: 33%; } }
   .about #intp { float: right; margin-left: 1em; }
   .about #way_things_work { float: left; margin-right: 1em; }
   .about #shibusa { margin: -2em 0 2em 0; width: 100%; }
@@ -108,8 +108,7 @@ p {
     .skill img { float: left; margin-right: 1em; width: 75px; }
     .skill p { margin: 1em 0; }
 
-.code {
-  display: none; }
+.code { display: none; }
   .code #breadcrumb-play { float: left; margin-right: 1em; width: 30%; }
   .code #kx-cube { height: 77px; margin: 0 1em; }
   .code #kyuplex { margin: -1px 0 -5px; width: 100%; }
@@ -121,3 +120,6 @@ p {
     .commits-section img { float: none; margin: 0; width: 100%; } }
   @media (max-width: 767px) {
     .code .connections-algo img { width: 100%; } }
+
+.more { display: none; }
+  .more .links p { margin-bottom: 1em; }
