@@ -88,6 +88,7 @@ pre { overflow: scroll; }
     margin: 0; }
   .content .content-title {
     background-color: black; 
+    font-size: 2em;
     padding: 1em; }   
   .content-section { 
     background: white; 
@@ -112,7 +113,7 @@ pre { overflow: scroll; }
 
 .code { display: none; }
   .code #breadcrumb-play { float: left; margin-right: 1em; width: 30%; }
-  .code #kx-cube { height: 77px; margin: 0 1em; }
+  .code #kx-cube { height: 90px; margin: 5px 0; }
   .code #kyuplex { margin: -1px 0 -5px; width: 100%; }
   .code .connections-algo { margin-top: 1em; }
   .code .connections-algo img { margin: 0 0 1em; }
