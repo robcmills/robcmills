@@ -42,7 +42,7 @@ pre { overflow: scroll; }
   .head svg#title { height: 100px; }
 
 .nav {
-  background-color: DimGrey;
+  background-color: rgb(75,75,75);
   color: white;
   text-align: center; }
   .nav ul {
@@ -50,6 +50,7 @@ pre { overflow: scroll; }
     margin: 0;
     padding: 0; }
   .nav li {
+    background-color: black;
     display: inline-block;
     margin-left: -5px;
     padding: 1em; }
@@ -57,7 +58,8 @@ pre { overflow: scroll; }
     background-color: rgb(75,75,75);
     cursor: pointer; }
   .nav li.active {
-    background-color: black; }
+    background-color: lightgrey; 
+    color: black; }
 
 .background { background-color: white; }
 
@@ -71,7 +73,7 @@ pre { overflow: scroll; }
 .content {
   color: black;
   display: none;
-  margin: 2em auto;
+  margin: 2em auto 0;
   text-align: left;
   width: 800px; }
   @media (max-width: 767px) {
@@ -114,7 +116,7 @@ pre { overflow: scroll; }
 .code { display: none; }
   .code #breadcrumb-play { float: left; margin-right: 1em; width: 30%; }
   .code #kx-cube { height: 90px; margin: 5px 0; }
-  .code #kyuplex { margin: -1px 0 -5px; width: 100%; }
+  .code #kx { margin: -1px 0 -5px; width: 100%; }
   .code .connections-algo { margin-top: 1em; }
   .code .connections-algo img { margin: 0 0 1em; }
   .code .commits-section { margin-bottom: 2em; } 
