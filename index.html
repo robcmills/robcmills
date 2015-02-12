@@ -10,6 +10,7 @@
 
   <title>robcmills</title>
 
+  <link href="css/monokai_sublime.css" rel="stylesheet" >
   <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -319,13 +320,13 @@
         <pre>    fab deploy</pre>
         Mezzanine also provides custom cache middleware. I enabled this as well as serving static assets directly through the nginx config.<br>
         I experimented with django-assets and django-compressor, but found them rather inefficient for our relatively small site.  The number of css/js files that needed to be concatenated and minified didn't justify the extra overhead required to find and compile them at run-time. The option to disable run-time compilation was present, but even then you can only specify which directories to search for static files. I preferred to just write a shell script that concatenated and minified the files manually, that way I could individualy regenerate only the files I knew I had just edited. I didn't want to give up any compute cycles in our preciously fast server response time.<br>
-        <pre>
-    cat vendor/normalize.css \
-      vendor/pickadate/classic.css \
-      vendor/pickadate/classic.date.css \
-      vendor/jquery.ui.css \
-      styles.css | cssmin > base.min.css
-        </pre>
+        <pre><code class='bash'>
+  cat vendor/normalize.css \
+    vendor/pickadate/classic.css \
+    vendor/pickadate/classic.date.css \
+    vendor/jquery.ui.css \
+    styles.css | cssmin > base.min.css
+        </code></pre>
         After all of my efforts, our site is much faster and responsive. According to Google's PageSpeed analyzer, our site is now scoring 74 / 100 on mobile, 85 / 100 on desktop, and 100 / 100 user experience.
         <br><br>
         Check us out at <a href="http://thegogame.com">thegogame.com</a>
@@ -346,37 +347,37 @@
         But wait there's more! Then I wanted to split up the map and render a png of each state for each state page. Doing it manually would have taken forever, so I wrote a few scripts.<br>
         First I used javascript to collect the bounding boxes:<br>
         </p>
-        <pre>
-    var states = [];
-    var bbox;
-    $('.state').each(function(idx, state) {
-      bbox = state.getBBox();
-      states.push('{' + $(state).attr('id') + ': ' +
-      bbox.x.toPrecision(4) + ' ' + bbox.y.toPrecision(4) + ' ' + 
-      bbox.width.toPrecision(4) + ' ' + bbox.height.toPrecision(4) + '}');
-    });        
-        </pre>
+        <pre><code class='javascript'>
+  var states = [];
+  var bbox;
+  $('.state').each(function(idx, state) {
+    bbox = state.getBBox();
+    states.push('{' + $(state).attr('id') + ': ' +
+    bbox.x.toPrecision(4) + ' ' + bbox.y.toPrecision(4) + ' ' + 
+    bbox.width.toPrecision(4) + ' ' + bbox.height.toPrecision(4) + '}');
+  });        
+        </code></pre>
         <p>
         Then with that information I could parse the US svg with python and output state svg files:
         </p>
-        <pre>
-    states_dims = {
-        'MI': "567.5 74.74 130.7 137.6", 
-        ...
-        'FL': "643.1 438.4 159.4 134.1", 
-    }
-    with open('states.svg', 'r') as f:
-        lines = f.readlines()
-    for line in lines:
-        m = re.search(r'id="(..)"', line)
-        abbrev = m.group(1)
-        with open(abbrev + '.svg', 'w') as dest:
-            view_box = states_dims[abbrev]
-            dest.writelines([
-                u'&lt;svg class="state_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="' + view_box + u'"&gt;\n',
-                u'&lt;style type="text/css"&gt; .state {fill:#f47421; stroke:#fff; stroke-width:0.75; stroke-opacity:1; } &lt;/style&gt;\n',
-                line, u'&lt;/svg&gt;'])
-        </pre>
+        <pre><code class='python'>
+  states_dims = {
+      'MI': "567.5 74.74 130.7 137.6", 
+      ...
+      'FL': "643.1 438.4 159.4 134.1", 
+  }
+  with open('states.svg', 'r') as f:
+      lines = f.readlines()
+  for line in lines:
+      m = re.search(r'id="(..)"', line)
+      abbrev = m.group(1)
+      with open(abbrev + '.svg', 'w') as dest:
+          view_box = states_dims[abbrev]
+          dest.writelines([
+              u'&lt;svg class="state_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="' + view_box + u'"&gt;\n',
+              u'&lt;style type="text/css"&gt; .state {fill:#f47421; stroke:#fff; stroke-width:0.75; stroke-opacity:1; } &lt;/style&gt;\n',
+              line, u'&lt;/svg&gt;'])
+        </code></pre>
         <p>Door number 3! I then wrote a Photoshop script to convert all those svg files into png's. Done and done. Fun!</p>
       </div>
 
@@ -448,6 +449,7 @@
 
   <script src="js/jquery.js"></script>
   <script src="js/snap.svg.js"></script>
+  <script src="js/highlight.js"></script>
   <script src="js/js.js"></script>
 </body>
 </html>

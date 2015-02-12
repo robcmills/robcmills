@@ -25,6 +25,9 @@ function changeToTab(el) {
 
 $(document).ready(function() {
 
+  // highlight.js (syntax highlighting)
+  hljs.initHighlightingOnLoad();
+
   $('.head').click(function(el) {
     animate_svg();
   });
