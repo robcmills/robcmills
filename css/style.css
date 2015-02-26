@@ -10,6 +10,8 @@ p {
   line-height: 20px;
   margin: 0; }
 
+h4 { margin: 1em 0; }
+
 pre { overflow: scroll; }
 
 .clearfix {}
@@ -114,6 +116,7 @@ pre { overflow: scroll; }
     .skill p { margin: 1em 0; }
 
 .code { display: none; }
+  .code #ie-logo { float: left; margin: 2em; width: 75px; }
   .code #breadcrumb-play { float: left; margin-right: 1em; width: 30%; }
   .code #kx-cube { height: 90px; margin: 5px 0; }
   .code #kx { margin: -1px 0 -5px; width: 100%; }

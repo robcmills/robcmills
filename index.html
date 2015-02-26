@@ -232,6 +232,27 @@
 
     <div class="code content">
 
+      <div id='mailto' class="content-head">
+        <img id='ie-logo' src='img/ie-logo.png'/>
+        <h2 class="content-title">Using mailto to overcome Mobile Internet Explorer's lack of file input support</h2>
+      </div>
+      <div class='content-section'>
+
+        <h4>The Context:</h4>
+        <p>Our preferred target platform is OSX, iOS and Android, but Microsoft is one of our clients and so we needed our software to run on Windows phones.</p> 
+
+        <h4>The Problem:</h4>
+        <p>Unfortunately Internet Explorer Mobile's support for file input elements is sub-par, and this is a mission critical component of our game experience - the ability to upload photos and videos in realtime from the phone. Our software is a web application and we were not willing to invest the time and resources into porting to a native Windows app. We needed a reliant and robust alternative.  
+        </p>
+
+        <h4>The Solution:</h4>
+        <p>I proposed we allow players to use the phone's native camera app to take photos and videos, then email them as attachments to our platform. I would set up a mail server that receives mail, immediately parses the mail and attachments, uploads media to our servers and updates relevant waypoints, interfacing with our existing API.</p>
+
+        <h4>The Implementation:</h4>
+        <p>
+        </p>
+      </div>
+  
       <div id='github' class="content-head">
         <h2 class="content-title">Github summary 2014</h2>
       </div>
