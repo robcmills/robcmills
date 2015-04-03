@@ -84,7 +84,8 @@
         <h2 class="content-title">Robert Carter Mills</h2>
       </div>
       <div class='content-section'>
-        <p>I am by nature a programmer, engineer, and artist. I derive a deep sense of satisfaction from the process of understanding, designing, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, intuitive interfaces.<br>
+        <h3>coder, engineer, linguist, artist</h3>
+        <p>I love programming, conceptual design, languages, and aesthetics. I derive a deep sense of satisfaction from the process of learning, creating, and implementing efficient software solutions, manipulating data to be more palatable, and crafting elegant, extensible, intuitive interfaces.<br>
         <br>Having been a fast-paced FPS PC gamer most of my life, I have a particular passion for optimizing code and low latency. My highly tuned gaming configs made extensive use of key-bindings, which translated nicely to Vim-style modal editing. I use Sublime Text Vintage mode fluently, along with macros and scripts to quickly and productively manipulate code. </p> 
         <br>
         <img id='intp' src='img/intp_logo.png'/>
@@ -150,6 +151,12 @@
           </p>
         </div>       
         <div class='skill'>
+          <img src='img/coffeescript_logo.png'/>
+          <p><b>coffeescript</b><br>
+          I love coffeescript. It infuses javascript with some of the good parts of Python and Ruby syntax and language constructs, as well as with beautiful, minimal punctuation. The documentation is excellent and definitely worth multiple readings.  
+          </p>
+        </div>
+        <div class='skill'>
           <img src='img/css3_logo.png'/>
           <p><b>CSS3</b><br>
           I am strong with CSS. While working at <a href='http://thegogame.com'>The Go Game</a> I was given sole responsibility for rebuilding the entire website from the ground up. We hired a design firm to do the bulk of the content and layout, which they did and then handed it off to me. I spent months cleaning up the css, optimizing and polishing the site for desktop and mobile on all major browsers, including Internet Explorer all the way down to 8.<br>
@@ -194,11 +201,23 @@
           </p>
         </div>       
         <div class='skill'>
+          <img src='img/jade-logo.png'/>
+          <p><b>jade - Node Template Engine</b><br>
+          Although Jinja was my first exposure to templating, jade is uniquely both a dialect of HTML and a templating language. I utilize it for generating content heavy HTML quickly and efficiently. It does not play well with Handlebars templates, unfortunately, and I wish I had enough time to write an extension to the language. Would be a fun project. 
+          </p>
+        </div>              
+        <div class='skill'>
           <img src='img/js_logo.png'/>
           <p><b>javascript</b><br>
           Again, like HTML I think it goes without being said that I am strong in javascript. Having worked with Ember mostly, I do tend to use jQuery, but would welcome the opportunity to dig into plain old javascript for a project. But only The Good Parts.
           </p>
         </div>       
+        <div class='skill'>
+          <img src='img/jinja-logo.png'/>
+          <p><b>Jinja2</b><br>
+          An excellent templating language for Python. Great for use with Flask (Python Microframework). Similar to Django's templates, this was one of my first exposures to templating in Python. 
+          </p>
+        </div>
         <div class='skill'>
           <img src='img/jquery_logo.png'/>
           <p><b>jQuery</b><br>
@@ -215,6 +234,12 @@
           <img src='img/python_logo.png'/>
           <p><b>Python</b><br>
           The swiss army knife of programming languages! Python is the first language I learned and I have since grown to like it more and more, even though it's slower than molasses north of The Wall in Westeros. It's got some handy libraries though, such as requests, lxml, BeautifulSoup, and Kivy.
+          </p>
+        </div>       
+        <div class='skill'>
+          <img src='img/sass-logo.png'/>
+          <p><b>Sass</b><br>
+          Syntactically Awesome Style Sheets are simply a dialect of CSS, and the first alternate dialect of a programming language that I learned. After realizing the potential of programming dialects and their benefits, both practically and aesthetically, I went on to learn dialects of HTML and Javascript such as Jade and CoffeeScript.
           </p>
         </div>       
       </div>
@@ -249,8 +274,22 @@
         <p>I proposed we allow players to use the phone's native camera app to take photos and videos, then email them as attachments to our platform. I would set up a mail server that receives mail, immediately parses the mail and attachments, uploads media to our servers and updates relevant waypoints, interfacing with our existing API.</p>
 
         <h4>The Implementation:</h4>
-        <p>
+        <p>I instantiated an AWS EC2 server with an Ubunut 14.04 AMI and installed postfix. I used inotifywait to subscribe to file system changes in the Maildir inbox. This way I could hook into the create event and run a python script everytime a new email arrived, like this: 
         </p>
+        <pre><code class='bash'>
+  while true; do
+    inotifywait -e create /home/ubuntu/Maildir/new | while read line; do
+      echo 'You have mail!';
+      date
+      python parse_maildir.py
+    done
+    if [ "$?" != "0" ]; then break; fi
+  done
+  exit 1  
+        </code></pre>
+        <p>inotifywait has a -m(onitor) option, but I engineered the script this way so that if parse_maildir.py throws any errors and exits with a non-zero status, the loop could be broken and the shell script itself would exit. Combined with a supervisor setting of autorestart=false this would ensure that any problems that arose while parsing mail would not go unoticed. This service must be highly reliant so we are taking extra precautions.</p>
+        <p>Additionally, we wanted to use our monitoring service Pingdom to alert us if the process stopped. 
+        </p> 
       </div>
   
       <div id='github' class="content-head">

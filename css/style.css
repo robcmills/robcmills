@@ -10,6 +10,7 @@ p {
   line-height: 20px;
   margin: 0; }
 
+h3 { margin: 0.5em 0; }
 h4 { margin: 1em 0; }
 
 pre { overflow: scroll; }
