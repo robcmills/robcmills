@@ -14,6 +14,7 @@ h3 { margin: 0.5em 0; }
 h4 { margin: 1em 0; }
 
 pre { overflow: scroll; }
+code { background-color: rgb(240,240,240); padding: 4px; }
 
 .clearfix {}
   .clearfix:before, .clearfix:after
@@ -78,7 +79,11 @@ pre { overflow: scroll; }
   display: none;
   margin: 2em auto 0;
   text-align: left;
-  width: 800px; }
+  width: 1000px; }
+  @media (max-width: 1024px) {
+    .content {
+      margin: 1em auto;
+      width: 800px; } }
   @media (max-width: 767px) {
     .content {
       margin: 1em auto;
@@ -117,7 +122,9 @@ pre { overflow: scroll; }
     .skill p { margin: 1em 0; }
 
 .code { display: none; }
+  .code #mezzanine-logo { margin: 0.5em; width: 94px; }
   .code #ie-logo { float: left; margin: 2em; width: 75px; }
+  .code #github-logo { margin: 0.5em; width: 87px; }
   .code #breadcrumb-play { float: left; margin-right: 1em; width: 30%; }
   .code #kx-cube { height: 90px; margin: 5px 0; }
   .code #kx { margin: -1px 0 -5px; width: 100%; }
