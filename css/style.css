@@ -122,6 +122,7 @@ code { background-color: rgb(240,240,240); padding: 4px; }
     .skill p { margin: 1em 0; }
 
 .code { display: none; }
+  .code #chrome-logo { margin: 0.5em 1em; height: 86px; }
   .code #mezzanine-logo { margin: 0.5em; width: 94px; }
   .code #ie-logo { float: left; margin: 2em; width: 75px; }
   .code #github-logo { margin: 0.5em; width: 87px; }

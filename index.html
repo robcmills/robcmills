@@ -257,6 +257,50 @@
 
     <div class="code content">
 
+      <div id='death' class="content-head">
+        <img id='chrome-logo' src='img/chrome-logo.png'/>
+        <h2 class="content-title">Bugfix - black screen of death</h2>
+      </div>
+      <div class='content-section'>
+
+        <h4>The Problem:</h4>
+        <p>Videos would periodically stop loading, and show only a black screen in our judging presentation app. This app is used in front of large audiences at the end of nearly every game we run, and so this particular bug was classified CODE RED and I set about finding a fix ASAP.</p> 
+
+        <h4>The Solution:</h4>
+        <p>Finding <a href="https://code.google.com/p/chromium/issues/detail?id=234779">this Chromium issue</a> is what helped me finally figure this out;</p>
+
+        <p>When the browser requests video or audio content, it includes the <code>Range</code> and <code>Connection:keep-alive</code> headers in order to download only a small portion of the content quickly, in anticipation that the user may decide not to play the media content before leaving the page. This keeps the connection open until the video is actually played:</p>
+
+        <p><img src="https://cloud.githubusercontent.com/assets/4131746/8681880/ebadd6ec-2a1e-11e5-9261-96a28b4f8fab.png" style="max-width:100%;"></p>
+
+        <p>This causes a problem in the localjudging app because when ember routes to a new video, we simply replace the <code>&lt;source&gt;</code> url and rerender:</p>
+
+        <pre><code class='javascript'>
+  Preso.MediaItemShowView = Ember.View.extend(
+  ...
+  contentDidChange: function() {
+    if(this.state === 'inDOM') { this.rerender(); }
+  }.observes('controller.content')
+        </code></pre>
+
+        <p>This leaves the pending <code>206 Partial Content</code> requests open, and Chrome allows only 6 open connections per domain. Thus, once that maximum is reached, further requests are not allowed and stall, causing the black screen of death.</p>
+
+        <p>The solution, according to <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video">Mozilla Development Network's HTML5 Audio and Video Guide</a> is to stop the download of the media immediately and close the request by setting the media element's <code>src</code> attribute to an empty string:</p>
+
+        <pre><code class='javascript'>
+  contentDidChange: function() {
+    if(this.state === 'inDOM') { 
+      if(this.get('controller.isVideo')) {
+        var video = this.$('video').get(0);
+        video.src = '';
+      }
+      this.rerender(); 
+    }        
+        </code></pre>
+
+      </div>
+
+
       <div id='migrations' class="content-head">
         <img id='mezzanine-logo' src='img/mezzanine-logo.png'/>
         <h2 class="content-title">Data Migrations in Mezzanine</h2>
