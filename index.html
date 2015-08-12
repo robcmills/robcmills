@@ -277,10 +277,10 @@
 
         <pre><code class='javascript'>
   Preso.MediaItemShowView = Ember.View.extend(
-  ...
-  contentDidChange: function() {
-    if(this.state === 'inDOM') { this.rerender(); }
-  }.observes('controller.content')
+    ...
+    contentDidChange: function() {
+      if(this.state === 'inDOM') { this.rerender(); }
+    }.observes('controller.content')
         </code></pre>
 
         <p>This leaves the pending <code>206 Partial Content</code> requests open, and Chrome allows only 6 open connections per domain. Thus, once that maximum is reached, further requests are not allowed and stall, causing the black screen of death.</p>
@@ -311,60 +311,60 @@
         <p>We are expanding our business into Europe and would like to utilize Mezzanine's <em>multi-tenancy</em> feature to implement multiple sites within one Django installation. The European site would share most of our content, however we want to isolate their content so they can safely edit it without affecting the US site. Thus I needed to do a complicated data migration of the majority of the site tree. Given Mezzanine's complex Page model and the high degree of relational fields present in our models, this turned into a fairly complex task. The results of my efforts follow. I wrote a fairly generic, recursive site tree copy method:</p> 
 
         <pre><code class='python'>
-def copy_model(model, attrs={}):
-    model.pk = None
-    model.id = None
-    model.save()
-    for attr in attrs:
-        setattr(model, attr, attrs[attr])
-    model.save()
-    return model
+  def copy_model(model, attrs={}):
+      model.pk = None
+      model.id = None
+      model.save()
+      for attr in attrs:
+          setattr(model, attr, attrs[attr])
+      model.save()
+      return model
 
 
-def copy_page(page, parent=None, attrs={}):
-    '''copy page, children, and all related models recursively
-       and set provided attributes'''
-    content_model = page.get_content_model()
-    children = page.children.all()
-    all_related = content_model._meta.get_all_related_objects()
-    # method is recursive, handle children separately
-    related_objects = [
-        r for r in all_related if r.get_accessor_name() != 'children']
-    related_models = []
-    for related_object in related_objects:
-        related_manager = getattr(
-            content_model, related_object.get_accessor_name())
-        for related_model in related_manager.all():
-            related_models.append({
-                'field_name': related_object.field.name, 
-                'model': related_model 
-            })
+  def copy_page(page, parent=None, attrs={}):
+      '''copy page, children, and all related models recursively
+         and set provided attributes'''
+      content_model = page.get_content_model()
+      children = page.children.all()
+      all_related = content_model._meta.get_all_related_objects()
+      # method is recursive, handle children separately
+      related_objects = [
+          r for r in all_related if r.get_accessor_name() != 'children']
+      related_models = []
+      for related_object in related_objects:
+          related_manager = getattr(
+              content_model, related_object.get_accessor_name())
+          for related_model in related_manager.all():
+              related_models.append({
+                  'field_name': related_object.field.name, 
+                  'model': related_model 
+              })
 
-    page_copy = copy_model(content_model, attrs)
-    page_copy.set_parent(parent)
-    page_copy.save()
+      page_copy = copy_model(content_model, attrs)
+      page_copy.set_parent(parent)
+      page_copy.save()
 
-    for r in related_models:
-        attrs_copy = copy(attrs)
-        attrs_copy.update({r['field_name']: page_copy})
-        copy_model(r['model'], attrs_copy)
+      for r in related_models:
+          attrs_copy = copy(attrs)
+          attrs_copy.update({r['field_name']: page_copy})
+          copy_model(r['model'], attrs_copy)
 
-    for child in children:
-        copy_page(child, page_copy, attrs)
+      for child in children:
+          copy_page(child, page_copy, attrs)
 
 
-## create eu site object
-eu_site = Site(domain='thegogame.eu', name='The Go Game Europe')
-eu_site.save()
+  ## create eu site object
+  eu_site = Site(domain='thegogame.eu', name='The Go Game Europe')
+  eu_site.save()
 
-# ensure current site is us
-us_site = Site.objects.get(domain='thegogame.com')
-settings.SITE_ID = us_site.id
+  # ensure current site is us
+  us_site = Site.objects.get(domain='thegogame.com')
+  settings.SITE_ID = us_site.id
 
-## copy all root pages recursively and assign to eu site
-root_pages = Page.objects.filter(parent=None)
-for page in root_pages:
-    copy_page(page, None, {'site': eu_site})
+  ## copy all root pages recursively and assign to eu site
+  root_pages = Page.objects.filter(parent=None)
+  for page in root_pages:
+      copy_page(page, None, {'site': eu_site})
         </code></pre>
       </div>
 
@@ -404,65 +404,65 @@ for page in root_pages:
         </p> 
 
         <pre><code class='python'>
-from BaseHTTPServer import BaseHTTPRequestHandler
-import supervisor.xmlrpc
-import xmlrpclib
+  from BaseHTTPServer import BaseHTTPRequestHandler
+  import supervisor.xmlrpc
+  import xmlrpclib
 
 
-class StateRequestHandler(BaseHTTPRequestHandler):
+  class StateRequestHandler(BaseHTTPRequestHandler):
 
-    '''
-    Implements only HTTP GET requests for named processes' state
-    /state/&lt;process_name&gt;
-    Uses xmlrpc proxy to talk to supervisor through socketpath
-    Note that socketpath is hard-coded
-    Returns 200 OK if process.statename == RUNNING
-    '''
+      '''
+      Implements only HTTP GET requests for named processes' state
+      /state/&lt;process_name&gt;
+      Uses xmlrpc proxy to talk to supervisor through socketpath
+      Note that socketpath is hard-coded
+      Returns 200 OK if process.statename == RUNNING
+      '''
 
-    server_version = "StateHTTP/" + __version__
+      server_version = "StateHTTP/" + __version__
 
-    def __init__(self, request, client_address, server):
-        self.protocol_version = "HTTP/1.0"
-        # setup xmlprc proxy
-        self.socketpath = '/home/ubuntu/mailsubmit/supervisor.sock'
-        self.proxy = xmlrpclib.ServerProxy('http://127.0.0.1',
-            transport=supervisor.xmlrpc.SupervisorTransport(None, None,
-                serverurl='unix://' + self.socketpath))
-        BaseHTTPRequestHandler.__init__(self, request, client_address, server);
+      def __init__(self, request, client_address, server):
+          self.protocol_version = "HTTP/1.0"
+          # setup xmlprc proxy
+          self.socketpath = '/home/ubuntu/mailsubmit/supervisor.sock'
+          self.proxy = xmlrpclib.ServerProxy('http://127.0.0.1',
+              transport=supervisor.xmlrpc.SupervisorTransport(None, None,
+                  serverurl='unix://' + self.socketpath))
+          BaseHTTPRequestHandler.__init__(self, request, client_address, server);
 
 
-    def do_GET(self):
-        # validate path
-        path = self.path
-        process_name = path.split('/')[-1]
-        if not process_name or process_name == 'state':
-            self.send_error(400, 
-                "Bad request syntax: use /state/&lt;process_name&gt;")
-            return
+      def do_GET(self):
+          # validate path
+          path = self.path
+          process_name = path.split('/')[-1]
+          if not process_name or process_name == 'state':
+              self.send_error(400, 
+                  "Bad request syntax: use /state/&lt;process_name&gt;")
+              return
 
-        # ensure supervisor is running
-        supervisor_state = self.proxy.supervisor.getState()
-        if not supervisor_state or supervisor_state['statename'] != 'RUNNING':
-            self.send_error(500, 
-                "Supervisor is not running")
-            return           
+          # ensure supervisor is running
+          supervisor_state = self.proxy.supervisor.getState()
+          if not supervisor_state or supervisor_state['statename'] != 'RUNNING':
+              self.send_error(500, 
+                  "Supervisor is not running")
+              return           
 
-        # check if process is running
-        process_state = None
-        try:
-            process_state = self.proxy.supervisor.getProcessInfo(process_name)
-        except xmlrpclib.Fault:
-            self.send_error(500, 
-                "No process named %s" % process_name)
-            return
-        if not process_state or process_state['statename'] != 'RUNNING':
-            self.send_error(500, 
-                "Process %s is not running" % process_name)
-            return
+          # check if process is running
+          process_state = None
+          try:
+              process_state = self.proxy.supervisor.getProcessInfo(process_name)
+          except xmlrpclib.Fault:
+              self.send_error(500, 
+                  "No process named %s" % process_name)
+              return
+          if not process_state or process_state['statename'] != 'RUNNING':
+              self.send_error(500, 
+                  "Process %s is not running" % process_name)
+              return
 
-        self.send_response(200, 'OK')
-        self.send_header("Content-type", 'text/plain')
-        self.end_headers()
+          self.send_response(200, 'OK')
+          self.send_header("Content-type", 'text/plain')
+          self.end_headers()
         </code></pre>
 
       </div>
