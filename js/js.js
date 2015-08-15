@@ -11,6 +11,7 @@ function showTab(tab) {
   $('.content').hide();
   $('.nav .' + tab + '-tab').addClass('active');
   $('.' + tab).show();
+  $('img').appear();
 };
 
 function changeToTab(el) {
@@ -45,5 +46,13 @@ $(document).ready(function() {
   }
 
   animate_svg();
+
+  $('img').appear();
+  $('img').on('appear', function() {
+    // console.log('appear', this, $appeared_elements);
+    // $appeared_elements.each(function(el) {
+    $(this).attr('src', $(this).attr('data-src')).addClass('appear');
+    // });
+  }); 
 
 });

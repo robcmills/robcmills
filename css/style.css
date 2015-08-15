@@ -118,7 +118,9 @@ code { background-color: rgb(240,240,240); padding: 4px; }
     .about .cmd-up:hover { cursor: pointer; opacity: 0.75; }
   .about .skill p { 
     vertical-align: top; }
-    .skill img { float: left; margin-right: 1em; width: 75px; }
+    .skill img { float: left; height: 75px; margin-right: 1em; 
+      visibility: hidden; width: 75px; }
+    .skill img.appear { visibility: visible; }
     .skill p { margin: 1em 0; }
 
 .code { display: none; }
