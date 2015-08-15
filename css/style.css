@@ -125,6 +125,15 @@ code { background-color: rgb(240,240,240); padding: 4px; }
 
 .code { display: none; }
   .code #chrome-logo { margin: 0.5em 1em; height: 86px; }
+  .code .end-at-box { margin-top: 1em; text-align: center; }
+  .code .end-at-item { 
+    display: inline-block; 
+    font-style: italic; 
+    margin-right: 1em; 
+    width: 30%; }
+    @media (max-width: 767px) {
+    .code .end-at-item { margin: 0; width: 80%; } }
+  .code .end-at {  }
   .code #mezzanine-logo { margin: 0.5em; width: 94px; }
   .code #ie-logo { float: left; margin: 2em; width: 75px; }
   .code #github-logo { margin: 0.5em; width: 87px; }

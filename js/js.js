@@ -49,10 +49,7 @@ $(document).ready(function() {
 
   $('img').appear();
   $('img').on('appear', function() {
-    // console.log('appear', this, $appeared_elements);
-    // $appeared_elements.each(function(el) {
     $(this).attr('src', $(this).attr('data-src')).addClass('appear');
-    // });
   }); 
 
 });
