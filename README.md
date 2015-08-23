@@ -5,6 +5,10 @@ Personal website
 
 ```bash
 
+# jade watch
+
+jade -w -P -o dist jade/index.jade
+
 # installing awscli
 
 virtualenv env

@@ -4,3 +4,4 @@
 *.swo
 misc
 env
+node_modules

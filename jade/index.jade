@@ -1,0 +1,24 @@
+
+doctype html
+html(lang='en')
+  head
+    title robcmills
+
+    meta(charset="utf-8")
+    meta(name='author', description='robcmills')
+    meta(name='description', description='Robert Carter Mills')
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+
+    link(href="css/monokai_sublime.css", rel="stylesheet")
+    link(href="css/style.css", rel="stylesheet")
+
+  body
+    .main
+      .head
+        include ./head.jade
+      .nav
+        ul
+          li.tab.about-tab about
+          li.tab.code-tab code
+          li.tab.more-tab more

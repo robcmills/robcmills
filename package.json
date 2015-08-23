@@ -1,0 +1,23 @@
+{
+  "name": "robcmills",
+  "version": "1.0.0",
+  "description": "personal website",
+  "main": "index.js",
+  "dependencies": {
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robcmills/robcmills.git"
+  },
+  "author": "robcmills",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robcmills/robcmills/issues"
+  },
+  "homepage": "https://github.com/robcmills/robcmills#readme"
+}
