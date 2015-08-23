@@ -24,10 +24,10 @@ aws [options] <command> <subcommand> [parameters]
 aws s3 sync  \
   /Users/robcmills/code/robcmills.net/robcmills  \
   s3://robcmills.net  \
-  --dryrun  \
   --exclude '*.DS_Store'  \
   --exclude '*.pyc'  \
   --exclude '.git/*' \
-  --exclude 'env/*'
+  --exclude 'env/*'  \
+  --dryrun
 
 ```
