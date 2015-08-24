@@ -1,71 +1,17 @@
 
-#death.content-head
-  img#chrome-logo(src='img/chrome-logo.png')
-  h2.content-title Bugfix - black screen of death
-
-.content-section
-  h4 The Problem:
-  p Videos would periodically stop loading, and show only a black screen in our judging presentation app. This app is used in front of large audiences at the end of nearly every game we run, and so this particular bug was classified CODE RED and I set about finding a fix ASAP. 
-
-  h4 The Solution:
-  p Finding #[a(href="https://code.google.com/p/chromium/issues/detail?id=234779") this Chromium issue] is what helped me finally figure this out;
-  p When the browser requests video or audio content, it includes the #[code Range] and #[code Connection:keep-alive] headers in order to download only a small portion of the content quickly, in anticipation that the user may decide not to play the media content before leaving the page. This keeps the connection open until the video is actually played:
-  p #[img(src="https://cloud.githubusercontent.com/assets/4131746/8681880/ebadd6ec-2a1e-11e5-9261-96a28b4f8fab.png", style="max-width:100%;")]
-  p This causes a problem in the localjudging app because when ember routes to a new video, we simply replace the #[code &lt;source&gt;] url and rerender:
-
-  pre 
-    code.javascript.
-      Preso.MediaItemShowView = Ember.View.extend(
-      ...
-      contentDidChange: function() {
-        if(this.state === 'inDOM') { this.rerender(); }
-      }.observes('controller.content')
-
-  p This leaves the pending #[code 206 Partial Content] requests open, and Chrome allows only 6 open connections per domain. Thus, once that maximum is reached, further requests are not allowed and stall, causing the black screen of death.
-  p The solution, according to #[a(href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video") Mozilla Development Network&#39;s HTML5 Audio and Video Guide] is to stop the download of the media immediately and close the request by setting the media element's #[code src] attribute to an empty string:
-
-  pre
-    code.javascript.
-      contentDidChange: function() {
-      if(this.state === 'inDOM') { 
-        if(this.get('controller.isVideo')) {
-          var video = this.$('video').get(0);
-          video.src = '';
-        }
-        this.rerender(); 
-      }        
+include ./code/2015-death-screen.jade
+include ./code/2015-editable.jade
+include ./code/2014-mezzanine-migration.jade
+include ./code/2014-10-01-mail-to.jade
+include ./code/2014-github.jade
+include ./code/2014-breadcrumb.jade
+include ./code/2014-django.jade
+include ./code/2014-svg-states.jade
+include ./code/2013-kyuplex.jade
 
 
-#end-at-editable.content-head
-  h2.content-title Beautiful CSS
-
-.content-section
-  h4 The Problem:
-  p The game end-at popup was getting cut off on mobile, making it difficult to edit, as well as the game status buttons and the layout was generally a mess. Another developer on our team had taken a pass at it and said it wasn't possible because of the editable popup. #[br]Nonsense. 
-
-  h4 The Solution:
-  p Some beautiful css.
-  .end-at-box
-    .end-at-item
-      .caption Before
-      img.end-at(data-src='https://cloud.githubusercontent.com/assets/4131746/8068142/e8c6a76c-0ea6-11e5-9aa1-29a72724b0d4.PNG')
-    .end-at-item
-      .caption After
-      img.end-at(data-src='img/end-at-after-edit.png')
-    .end-at-item
-      .caption After
-      img.end-at(data-src='img/end-at-after.png')
-    
-
-#migrations.content-head
-  img#mezzanine-logo(data-src='img/mezzanine-logo.png')
-  h2.content-title Data Migrations in Mezzanine
-
-.content-section
-  h4 The Context:
-  p We are expanding our business into Europe and would like to utilize Mezzanine's #[em multi-tenancy] feature to implement multiple sites within one Django installation. The European site would share most of our content, however we want to isolate their content so they can safely edit it without affecting the US site. Thus I needed to do a complicated data migration of the majority of the site tree. Given Mezzanine's complex Page model and the high degree of relational fields present in our models, this turned into a fairly complex task. The results of my efforts follow. I wrote a fairly generic, recursive site tree copy method: 
-
-  pre
-    code.python
-      include ./copy-page.py
-
+.nav
+  ul
+    li.tab.about-tab(x='about') about
+    li.tab.code-tab(x='code') code
+    li.tab.more-tab(x='more') more

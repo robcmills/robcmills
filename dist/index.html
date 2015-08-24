@@ -181,9 +181,7 @@ if(this.state === 'inDOM') {
     video.src = '';
   }
   this.rerender(); 
-}        
-
-</code></pre>
+}        </code></pre>
         </div>
         <div id="end-at-editable" class="content-head">
           <h2 class="content-title">Beautiful CSS</h2>
@@ -265,6 +263,238 @@ settings.SITE_ID = us_site.id
 root_pages = Page.objects.filter(parent=None)
 for page in root_pages:
     copy_page(page, None, {'site': eu_site})</code></pre>
+        </div>
+        <div id="mailto" class="content-head"><img id="ie-logo" data-src="img/ie-logo.png">
+          <h2 class="content-title">Using mailto to overcome Mobile Internet Explorer's lack of file input support</h2>
+        </div>
+        <div class="content-section">
+          <h4>The Context:</h4>
+          <p>Our preferred target platform is OSX, iOS and Android, but Microsoft is one of our clients and so we needed our software to run on Windows phones. </p>
+          <h4>The Problem:</h4>
+          <p>Unfortunately Internet Explorer Mobile's support for file input elements is sub-par, and this is a mission critical component of our game experience - the ability to upload photos and videos in realtime from the phone. Our software is a web application and we were not willing to invest the time and resources into porting to a native Windows app. We needed a reliant and robust alternative.  </p>
+          <h4>The Solution:</h4>
+          <p>I proposed we allow players to use the phone's native camera app to take photos and videos, then email them as attachments to our platform. I would set up a mail server that receives mail, immediately parses the mail and attachments, uploads media to our servers and updates relevant waypoints, interfacing with our existing API.</p>
+          <h4>The Implementation:</h4>
+          <p>I instantiated an AWS EC2 server with an Ubunut 14.04 AMI and installed postfix. I used <code>inotifywait</code> to subscribe to file system changes in the Maildir inbox. This way I could hook into the create event and run a python script everytime a new email arrived, like this: </p>
+          <pre><code class="bash">while true; do
+inotifywait -e create /home/ubuntu/Maildir/new | while read line; do
+echo 'You have mail!';
+date
+python parse_maildir.py
+done
+if [ "$?" != "0" ]; then break; fi
+done
+exit 1  
+</code></pre>
+          <p><code>inotifywait</code> has a <code>-m(onitor)</code> option, but I engineered the script this way so that if <code>parse_maildir.py</code> throws any errors and exits with a non-zero status, the loop could be broken and the shell script itself would exit. Combined with a <code>supervisord</code> setting of <code>autorestart=false</code> this would ensure that any problems that arose while parsing mail would not go unoticed. This service must be highly reliant so we are taking extra precautions.</p>
+          <p>Additionally, we wanted to use our monitoring service <a href="https://www.pingdom.com/" target="_blank">Pingdom</a> to alert us if the process stopped. So I wrote a micro HTTP server that responds to GET requests and communicates with <code>supervisord</code> using <code>xmlrpc</code> to get the process state. If the <code>state == 'RUNNING'</code> it returns <code>200 OK</code>, else an error. In this way, if our service went down for any reason, Pingdom would notify our tech team within minutes. Here is a snippet of the state server:</p>
+          <pre><code class="python">from BaseHTTPServer import BaseHTTPRequestHandler
+import supervisor.xmlrpc
+import xmlrpclib
+
+
+class StateRequestHandler(BaseHTTPRequestHandler):
+
+    '''
+    Implements only HTTP GET requests for named processes' state
+    /state/&lt;process_name&gt;
+    Uses xmlrpc proxy to talk to supervisor through socketpath
+    Note that socketpath is hard-coded
+    Returns 200 OK if process.statename == RUNNING
+    '''
+
+    server_version = "StateHTTP/" + __version__
+
+    def __init__(self, request, client_address, server):
+        self.protocol_version = "HTTP/1.0"
+        # setup xmlprc proxy
+        self.socketpath = '/home/ubuntu/mailsubmit/supervisor.sock'
+        self.proxy = xmlrpclib.ServerProxy('http://127.0.0.1',
+            transport=supervisor.xmlrpc.SupervisorTransport(None, None,
+                serverurl='unix://' + self.socketpath))
+        BaseHTTPRequestHandler.__init__(self, request, client_address, server);
+
+
+    def do_GET(self):
+        # validate path
+        path = self.path
+        process_name = path.split('/')[-1]
+        if not process_name or process_name == 'state':
+            self.send_error(400, 
+                "Bad request syntax: use /state/&lt;process_name&gt;")
+            return
+
+        # ensure supervisor is running
+        supervisor_state = self.proxy.supervisor.getState()
+        if not supervisor_state or supervisor_state['statename'] != 'RUNNING':
+            self.send_error(500, 
+                "Supervisor is not running")
+            return           
+
+        # check if process is running
+        process_state = None
+        try:
+            process_state = self.proxy.supervisor.getProcessInfo(process_name)
+        except xmlrpclib.Fault:
+            self.send_error(500, 
+                "No process named %s" % process_name)
+            return
+        if not process_state or process_state['statename'] != 'RUNNING':
+            self.send_error(500, 
+                "Process %s is not running" % process_name)
+            return
+
+        self.send_response(200, 'OK')
+        self.send_header("Content-type", 'text/plain')
+        self.end_headers()</code></pre>
+        </div>
+        <div id="github" class="content-head"><img id="github-logo" data-src="img/github-logo.png">
+          <h2 class="content-title">Github summary 2014</h2>
+        </div>
+        <div class="content-section">
+          <p>Most of my commits this past year have been into private repositories. The following is a summary of the major projects I have been working on. I've excluded a number of smaller miscellaneous repos for the sake of brevity. </p><img data-src="img/git-contributions.png">
+          <div class="commits-section"><img data-src="img/breadcrumb-commits.png" class="commits">
+            <p><a href="https://github.com/thegogame/breadcrumb">github.com/thegogame/breadcrumb <br></a><em>Oct 2012 - Jan 2015 <br></em><a href="http://play.thegogame.com" target="_blank">play.thegogame.com <br></a>
+              <p>Built groups and sequences features, mission lists, mission search, facebook sharing in-app, gamezone edit interface, recursive media importer feature, media auto orientation, flavors interface, an S3 uploader ember component, and much more...</p>
+            </p>
+          </div>
+          <div class="commits-section"><img data-src="img/website-bravo-commits.png" class="commits">
+            <p> <a href="https://github.com/thegogame/website-bravo">github.com/thegogame/website-bravo <br></a><em>Apr 2013 – Jan 2015 <br></em><a href="http://thegogame.com" target="_blank">thegogame.com <br></a>
+              <p>I rebuilt our entire website site from the ground up (alpha). Then I recreated it again on EC2 with a number of optimizations (bravo).</p>
+            </p>
+          </div>
+          <div class="commits-section"><img data-src="img/client-portal-commits.png" class="commits">
+            <p> <a href="https://github.com/thegogame/client-portal">github.com/thegogame/client-portal <br></a><em>Jul 2014 – Jan 2015 <br></em><a href="https://secure.thegogame.com" target="_blank">secure.thegogame.com/cc <br></a>
+              <p>A credit card payment processing site I built with pure Django and a custom gateway for Django-merchant.</p>
+            </p>
+          </div>
+        </div>
+        <div id="breadcrumb" class="content-head">
+          <h2 class="content-title">A brief tour of Breadcrumb</h2>
+        </div>
+        <div class="content-section">
+          <p>Breadcrumb is our proprietary, multi web application, cross-browser real-world gaming platform we built at The Go Game. It uses Flask and MongoDB on the back end and the client side applications are made with Ember.js. It is a powerful, complex aplication suite with lots of cool features. I have worked on many small and large pieces of Breadcrumb, adding features, fixing bugs, and writing tests for everything. <br></p><img data-src="img/breadcrumb-create.png">
+          <p><b>Create tool</b> <br> 
+            Breadcrumb's Create tool is used by our creative game producers to create our unique flavor of engaging, fun, real world team building games. The interface includes an interactive map, made possible by our in-house developed, open source, <a href="https://github.com/gabesmed/ember-leaflet">ember-leaflet</a> library. I built the Groups tab which contains an intuitive drag-n-frop interface for editing mission sequences, the Lists tab for creating, sharing and managing lists of popular or categorized missions, the Search tab which includes a mission search feature, and the Styles tab which is used to create, edit, and apply custom skins to games.
+            
+          </p><img data-src="img/breadcrumb-direct.png">
+          <p><b>Direct tool</b> <br>
+            This application is used to actually run our games. View logged in teams' progress, points, location, uploaded media and more in real-time. Manipulating teams' mission queues, adjusting smart routing parameters, sending messages to teams and more is possible with this robust tool that gives our game producers total control over the client's experience, making it easy to ensure they have a ton of fun.  
+            
+          </p><img id="breadcrumb-play" data-src="img/breadcrumb-play.png">
+          <p><b>Play app</b> <br>
+            This is the client facing app that players see and interact with on their phones. We use trigger.io's Forge tool to compile our web app into a native iOS app. But the game is also playable through any web browser, so players can use their Androids and Blackberries. It is through this app that players receive instructions and missions, enter codes and answers, and take creative photos and videos.
+            
+          </p>
+          <p><b>Gallery</b> <br>
+            After each game Breadcrumb automatically generates a password-protected public gallery so players can relive all the embarrasing and hilarious moments.
+            
+          </p>
+          <p><b>Local judging app</b> <br>
+            When each game ends, all the hilarious photos and videos that players took are imported into the Local Judging application, where the game runner can present them at the ending venue for all to see.  There is a voting mechanism and points are tallied to determine winners. <br>
+            The judging app is written in python and compiled to an OSX app with Py2App. It also has a feature that uses gphoto2 to pull media directly from phones, with a smart matching algorithm based on the timestamp.
+          </p>
+        </div>
+        <h2 id="django" class="content-title">Optimizing a Django website</h2>
+        <div class="content-section">
+          <p><em>January, 2015</em> <br></p>
+          <p>Here are a few of the steps I took to optimize our website for faster page loads and thus better SEO: First, we decided to move our website from Heroku to Amazon EC2 for a few reasons:
+            <ol>
+              <li>Developer friendly. Heroku's <em>&quot;ephemeral filesystem&quot;</em>  presented some challenges, such as thumbnail generation and scheduling cronjobs without access to the underlying file system. Solvable, but far easier to work with an EC2 EBS standard Ubuntu file structure. <br> Also deploying minor code updates was clunky, because Heroku would instantiate a new instance and reinstall dependencies every time. It was slow and inefficient when you're just tweaking css.</li>
+              <li>Price. Heroku's dynos cost significantly more than Amazon's <a href="http://aws.amazon.com/ec2/instance-types"><em>Burst Performance Instances</em></a>, a clever, efficient way of providing consistent baseline performance, with more cpu available during periods of heavy traffic. An ideal model for web servers hosting mostly static content.</li>
+              <li>Performance. Our MySQL database was already on RDS. Amazon's computing centers are positioned in their respective availability zones to be within a few miles of each other, connected by dedicated fiber, and efficient, custom routing. The latency between the different services (i.e. S3, EC2, RDS) is usually less than 1ms. <br>After moving our database to the N. California zone and deploying our site to an EC2 instance in the same zone, our database query latency dropped significantly.</li>
+              <li>Training. Our gaming platform runs on an EC2 instance so the more I could work with and learn about EC2 the better. </li>
+            </ol>
+          </p>
+          <p>Our website is built on a stack with Mezzanine (a Django CMS), gunicorn (a wsgi server), and nginx. Getting an EC2 instance configured and the site set up and running was easy. Mezzanine provides an excellent template <a href="http://www.fabfile.com">fabric</a> file from which you can easily build custom methods to deploy your site as easily as one command line: <br></p>
+          <pre>fab deploy
+</pre>
+          <p>Mezzanine also provides custom cache middleware. I enabled this as well as serving static assets directly through the nginx config. <br>
+            I experimented with django-assets and django-compressor, but found them rather inefficient for our relatively small site.  The number of css/js files that needed to be concatenated and minified didn't justify the extra overhead required to find and compile them at run-time. The option to disable run-time compilation was present, but even then you can only specify which directories to search for static files. I preferred to just write a shell script that concatenated and minified the files manually, that way I could individualy regenerate only the files I knew I had just edited. I didn't want to give up any compute cycles in our preciously fast server response time. <br>
+            
+          </p>
+          <pre><code class="bash">cat vendor/normalize.css \
+vendor/pickadate/classic.css \
+vendor/pickadate/classic.date.css \
+vendor/jquery.ui.css \
+styles.css | cssmin &gt; base.min.css
+</code></pre>
+          <p>After all of my efforts, our site is much faster and responsive. According to Google's PageSpeed analyzer, our site is now scoring 74 / 100 on mobile, 85 / 100 on desktop, and 100 / 100 user experience. <br> Check us out at <a href="http://thegogame.com">thegogame.com</a></p>
+        </div>
+        <div id="svg" class="content-head">
+          <h2 class="content-title">Splitting the SVG US into 50 PNG's</h2>
+        </div>
+        <div class="content-section"><img id="CA" data-src="img/CA.png">
+          <p>While rebuilding our website I needed to create a locations page with a map of the US. Our site has pages for every state and most major cities because we want to target location specific keywords. Our old site had a fun flash based map with animated rollovers for every state. The design firm we hired had just handed over a page with a low resolution image of the US. I opted to do better. <br>
+            I started with <a href="http://commons.wikimedia.org/wiki/File:Blank_US_Map.svg" target="_blank">this excellent SVG map</a> of the US from wikimedia. <br>
+            I cleaned up the svg a bit, dropped it into the page and added rollover highlighting and clickable states. Nice and clean, goes well with the aesthetic of our site:
+            
+          </p>
+          <p><a href="http://thegogame.com/team-building/locations">thegogame.com/team-building/locations</a></p>
+          <p>But wait there's more! Then I wanted to split up the map and render a png of each state for each state page. Doing it manually would have taken forever, so I wrote a few scripts. <br>
+            First I used javascript to collect the bounding boxes: <br>
+            
+          </p>
+          <pre><code class="javascript">var states = [];
+var bbox;
+$('.state').each(function(idx, state) {
+  bbox = state.getBBox();
+  states.push('{' + $(state).attr('id') + ': ' +
+  bbox.x.toPrecision(4) + ' ' + bbox.y.toPrecision(4) + ' ' + 
+  bbox.width.toPrecision(4) + ' ' + bbox.height.toPrecision(4) + '}');
+});        
+</code></pre>
+          <p>Then with that information I could parse the US svg with python and output state svg files:</p>
+          <pre> <code class="python">states_dims = {
+    'MI': "567.5 74.74 130.7 137.6", 
+    ...
+    'FL': "643.1 438.4 159.4 134.1", 
+}
+with open('states.svg', 'r') as f:
+    lines = f.readlines()
+for line in lines:
+    m = re.search(r'id="(..)"', line)
+    abbrev = m.group(1)
+    with open(abbrev + '.svg', 'w') as dest:
+        view_box = states_dims[abbrev]
+        dest.writelines([
+            u'&lt;svg .state_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="' + view_box + u'"&gt;\n',
+            u'&lt;style type="text/css"&gt; .state {fill:#f47421; stroke:#fff; stroke-width:0.75; stroke-opacity:1; } &lt;/style&gt;\n',
+            line, u'&lt;/svg&gt;'])
+</code></pre>
+          <p>Door number 3. I then wrote a Photoshop script to convert all those svg files to png. Done and done. Fun!</p>
+        </div>
+        <div id="kyuplex" class="content-head"><img id="kx-cube" data-src="img/cube.jpg">
+          <h2 class="content-title">kyuplex</h2>
+        </div><img id="kx" data-src="img/kyuplex.jpg">
+        <div class="content-section"><a href="http://kyuplex.blogspot.com">kyuplex.blogspot.com <br></a><a href="https://github.com/robcmills/kyuplex">github.com/robcmills/kyuplex </a><br><br>
+          <p>
+            kyuplex is a portmanteau of cube + complex. <br>
+            It is a completely unique word I created to describe my programming project.  It is so unique in fact, that if you google it the entire first page of results are links to my dev blog about it, the github repository, and my website.  All without doing any SEO whatsoever. <br>
+            kyuplex is a programming exercise, learning experience, physics experiment, and manifestation of my obsession with geometric primitives.  kyuplex is my first major programming project after learning c++.  It uses irrlicht, an excellent open-source rendering engine and scene manager, as well as the Bullet physics library. <br>
+            kyuplex is a third-person simulation where you can control a cube with real physics and interact with other objects that have mass, and behave in realistic ways. For example, if you get going too fast and bump into another object with enough force, your cube will shatter accurately and you will lose points.
+            
+          </p><img data-src="img/kxCube-fracture.jpg">
+          <p>
+            kyuplex philosophy is about creating complexity from a simple cube. <br> 
+            This is accomplished through a deceptively simple visual style that emphasizes innovative gameplay physics and skilled precise movement. Although at first the game seems very simple, complexity is slowly unfolded through consistently evolving gameplay, in which each level presents the player with a unique challenge that introduces a new concept or dynamic. It is an ambitious goal because it breaks the mold of traditional gameplay, where the game mechanics are fairly static and each level is just a presentation of new content. <br>
+            kyuplex presented a number of fun challenges during its development, such as:
+            
+          </p><a href="http://kyuplex.blogspot.com/2013/03/preventing-camera-gimbal-lock-under.html">preventing camera gimbal lock under multiple inheritance <br></a><a href="http://kyuplex.blogspot.com/2012/11/cube-of-cubes-connections-algorithm.html">cube of cubes connections algorithm <br><br></a>
+          <p>kyuplex is inspired by my favorite games: <b>Quake</b> (id), <b>DeFrag</b> (Quake 3 mod), and <b>Portal</b> (Valve).
+            &quot;kyu&quot; is also the English romanization of a common Japanese syllable, きゅ <br>
+            This sound can have many meanings and Kanji associated with it, depending on the context. My particular favorite is きゅうき pronouced /kyu:ki/ (IPA) 吸気 <br>
+            The first character can mean <em>'to inhale; to sip'</em> <br>
+            The second <em>'mind; mood; spirit'</em> <br>
+            And together the meaning becomes: <em>inspiration</em>
+          </p>
+        </div>
+        <div class="nav">
+          <ul>
+            <li x="about" class="tab about-tab">about</li>
+            <li x="code" class="tab code-tab">code</li>
+            <li x="more" class="tab more-tab">more</li>
+          </ul>
         </div>
       </div>
     </div>
