@@ -56,7 +56,16 @@
       .caption After
       img.end-at(data-src='img/end-at-after.png')
     
-  
 
+#migrations.content-head
+  img#mezzanine-logo(data-src='img/mezzanine-logo.png')
+  h2.content-title Data Migrations in Mezzanine
 
+.content-section
+  h4 The Context:
+  p We are expanding our business into Europe and would like to utilize Mezzanine's #[em multi-tenancy] feature to implement multiple sites within one Django installation. The European site would share most of our content, however we want to isolate their content so they can safely edit it without affecting the US site. Thus I needed to do a complicated data migration of the majority of the site tree. Given Mezzanine's complex Page model and the high degree of relational fields present in our models, this turned into a fairly complex task. The results of my efforts follow. I wrote a fairly generic, recursive site tree copy method: 
+
+  pre
+    code.python
+      include ./copy-page.py
 

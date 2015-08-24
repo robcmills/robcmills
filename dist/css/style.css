@@ -15,6 +15,7 @@ h4 { margin: 1em 0; }
 
 pre { overflow: scroll; }
 code { background-color: rgb(240,240,240); padding: 4px; }
+.hljs { padding: 1em; }
 
 .clearfix {}
   .clearfix:before, .clearfix:after
