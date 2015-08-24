@@ -5,29 +5,22 @@ Personal website
 
 ```bash
 
-# installing awscli
+# watch and render templates
+
+jade -w -P -o dist jade/index.jade
+
+# install awscli
 
 virtualenv env
 . env/bin/activate
 pip install awscli
 
-# configuring awscli
+# configure awscli
 
 aws configure
 
-# using awscli
-
-aws [options] <command> <subcommand> [parameters]
-
 # sync local -> s3
 
-aws s3 sync  \
-  /Users/robcmills/code/robcmills.net/robcmills  \
-  s3://robcmills.net  \
-  --exclude '*.DS_Store'  \
-  --exclude '*.pyc'  \
-  --exclude '.git/*' \
-  --exclude 'env/*'  \
-  --dryrun
+./sync.sh
 
 ```

@@ -1,0 +1,40 @@
+
+#mailto.content-head
+  img#ie-logo(data-src='img/ie-logo.png')
+  h2.content-title Using mailto to overcome Mobile Internet Explorer's lack of file input support
+
+.content-section
+  h4 The Context:
+  p Our preferred target platform is OSX, iOS and Android, but Microsoft is one of our clients and so we needed our software to run on Windows phones. 
+
+  h4 The Problem:
+  p Unfortunately Internet Explorer Mobile's support for file input elements is sub-par, and this is a mission critical component of our game experience - the ability to upload photos and videos in realtime from the phone. Our software is a web application and we were not willing to invest the time and resources into porting to a native Windows app. We needed a reliant and robust alternative.  
+
+  h4 The Solution:
+  p I proposed we allow players to use the phone's native camera app to take photos and videos, then email them as attachments to our platform. I would set up a mail server that receives mail, immediately parses the mail and attachments, uploads media to our servers and updates relevant waypoints, interfacing with our existing API.
+
+  h4 The Implementation:
+  p I instantiated an AWS EC2 server with an Ubunut 14.04 AMI and installed postfix. I used #[code inotifywait] to subscribe to file system changes in the Maildir inbox. This way I could hook into the create event and run a python script everytime a new email arrived, like this: 
+  
+  pre
+    code.bash.
+      while true; do
+      inotifywait -e create /home/ubuntu/Maildir/new | while read line; do
+      echo 'You have mail!';
+      date
+      python parse_maildir.py
+      done
+      if [ "$?" != "0" ]; then break; fi
+      done
+      exit 1  
+
+  p #[code inotifywait] has a #[code -m(onitor)] option, but I engineered the script this way so that if #[code parse_maildir.py] throws any errors and exits with a non-zero status, the loop could be broken and the shell script itself would exit. Combined with a #[code supervisord] setting of #[code autorestart=false] this would ensure that any problems that arose while parsing mail would not go unoticed. This service must be highly reliant so we are taking extra precautions.
+
+  p Additionally, we wanted to use our monitoring service #[a(href='https://www.pingdom.com/', target='_blank') Pingdom] to alert us if the process stopped. So I wrote a micro HTTP server that responds to GET requests and communicates with #[code supervisord] using #[code xmlrpc] to get the process state. If the #[code state == 'RUNNING'] it returns #[code 200 OK], else an error. In this way, if our service went down for any reason, Pingdom would notify our tech team within minutes. Here is a snippet of the state server:
+
+  pre
+    code.python
+      include ./microHTTP.py
+
+
+

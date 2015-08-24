@@ -15,6 +15,7 @@ h4 { margin: 1em 0; }
 
 pre { overflow: scroll; }
 code { background-color: rgb(240,240,240); padding: 4px; }
+.hljs { padding: 1em; }
 
 .clearfix {}
   .clearfix:before, .clearfix:after
@@ -29,21 +30,21 @@ code { background-color: rgb(240,240,240); padding: 4px; }
   .content-section:after {   
     clear: both; }
 
-.head { 
+.header { 
   background-color: black; 
   color: white; }
-  .head .title {
+  .header .title {
     height: 100px;
     font-weight: 100;
     margin: 0;
     padding: 0.5em 0;
     text-align: center; }
     @media (max-width: 767px) {
-      .head .title {
+      .header .title {
         padding: 0.25em 0; } }   
-  .head:hover .title {
+  .header:hover .title {
     cursor: pointer; }
-  .head svg#title { height: 100px; }
+  .header svg#title { height: 100px; }
 
 .nav {
   background-color: rgb(75,75,75);
@@ -104,6 +105,7 @@ code { background-color: rgb(240,240,240); padding: 4px; }
     background: white; 
     margin-bottom: 2em;
     padding: 1em; }
+    .content-section p { margin-bottom: 1em; }
     .content-section img { margin: 1em 0; width: 100%; }
 
 

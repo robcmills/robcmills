@@ -1,0 +1,30 @@
+
+h2#django.content-title Optimizing a Django website
+
+.content-section
+  p #[em January, 2015] #[br]
+  p Here are a few of the steps I took to optimize our website for faster page loads and thus better SEO: First, we decided to move our website from Heroku to Amazon EC2 for a few reasons:
+    ol
+      li Developer friendly. Heroku's #[em &quot;ephemeral filesystem&quot;]  presented some challenges, such as thumbnail generation and scheduling cronjobs without access to the underlying file system. Solvable, but far easier to work with an EC2 EBS standard Ubuntu file structure. #[br] Also deploying minor code updates was clunky, because Heroku would instantiate a new instance and reinstall dependencies every time. It was slow and inefficient when you're just tweaking css.
+      li Price. Heroku's dynos cost significantly more than Amazon's #[a(href="http://aws.amazon.com/ec2/instance-types") #[em Burst Performance Instances]], a clever, efficient way of providing consistent baseline performance, with more cpu available during periods of heavy traffic. An ideal model for web servers hosting mostly static content.
+      li Performance. Our MySQL database was already on RDS. Amazon's computing centers are positioned in their respective availability zones to be within a few miles of each other, connected by dedicated fiber, and efficient, custom routing. The latency between the different services (i.e. S3, EC2, RDS) is usually less than 1ms. #[br]After moving our database to the N. California zone and deploying our site to an EC2 instance in the same zone, our database query latency dropped significantly.
+      li Training. Our gaming platform runs on an EC2 instance so the more I could work with and learn about EC2 the better. 
+
+  p Our website is built on a stack with Mezzanine (a Django CMS), gunicorn (a wsgi server), and nginx. Getting an EC2 instance configured and the site set up and running was easy. Mezzanine provides an excellent template #[a(href="http://www.fabfile.com") fabric] file from which you can easily build custom methods to deploy your site as easily as one command line: #[br]
+  
+  pre.
+    fab deploy
+
+  p.
+    Mezzanine also provides custom cache middleware. I enabled this as well as serving static assets directly through the nginx config. #[br]
+    I experimented with django-assets and django-compressor, but found them rather inefficient for our relatively small site.  The number of css/js files that needed to be concatenated and minified didn't justify the extra overhead required to find and compile them at run-time. The option to disable run-time compilation was present, but even then you can only specify which directories to search for static files. I preferred to just write a shell script that concatenated and minified the files manually, that way I could individualy regenerate only the files I knew I had just edited. I didn't want to give up any compute cycles in our preciously fast server response time. #[br]
+
+  pre
+    code.bash.
+      cat vendor/normalize.css \
+      vendor/pickadate/classic.css \
+      vendor/pickadate/classic.date.css \
+      vendor/jquery.ui.css \
+      styles.css | cssmin &gt; base.min.css
+
+  p After all of my efforts, our site is much faster and responsive. According to Google's PageSpeed analyzer, our site is now scoring 74 / 100 on mobile, 85 / 100 on desktop, and 100 / 100 user experience. #[br] Check us out at #[a(href="http://thegogame.com") thegogame.com]

@@ -1,0 +1,49 @@
+
+#svg.content-head
+  h2.content-title Splitting the SVG US into 50 PNG's
+
+.content-section
+  img#CA(data-src="img/CA.png")
+  p.
+    While rebuilding our website I needed to create a locations page with a map of the US. Our site has pages for every state and most major cities because we want to target location specific keywords. Our old site had a fun flash based map with animated rollovers for every state. The design firm we hired had just handed over a page with a low resolution image of the US. I opted to do better. #[br]
+    I started with #[a(href="http://commons.wikimedia.org/wiki/File:Blank_US_Map.svg", target="_blank") this excellent SVG map] of the US from wikimedia. #[br]
+    I cleaned up the svg a bit, dropped it into the page and added rollover highlighting and clickable states. Nice and clean, goes well with the aesthetic of our site:
+
+  p: a(href='http://thegogame.com/team-building/locations') thegogame.com/team-building/locations
+
+  p.
+    But wait there's more! Then I wanted to split up the map and render a png of each state for each state page. Doing it manually would have taken forever, so I wrote a few scripts. #[br]
+    First I used javascript to collect the bounding boxes: #[br]
+    
+  pre
+    code.javascript.
+      var states = [];
+      var bbox;
+      $('.state').each(function(idx, state) {
+        bbox = state.getBBox();
+        states.push('{' + $(state).attr('id') + ': ' +
+        bbox.x.toPrecision(4) + ' ' + bbox.y.toPrecision(4) + ' ' + 
+        bbox.width.toPrecision(4) + ' ' + bbox.height.toPrecision(4) + '}');
+      });        
+
+  p Then with that information I could parse the US svg with python and output state svg files:
+  pre 
+    code.python.
+      states_dims = {
+          'MI': "567.5 74.74 130.7 137.6", 
+          ...
+          'FL': "643.1 438.4 159.4 134.1", 
+      }
+      with open('states.svg', 'r') as f:
+          lines = f.readlines()
+      for line in lines:
+          m = re.search(r'id="(..)"', line)
+          abbrev = m.group(1)
+          with open(abbrev + '.svg', 'w') as dest:
+              view_box = states_dims[abbrev]
+              dest.writelines([
+                  u'&lt;svg .state_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="' + view_box + u'"&gt;\n',
+                  u'&lt;style type="text/css"&gt; .state {fill:#f47421; stroke:#fff; stroke-width:0.75; stroke-opacity:1; } &lt;/style&gt;\n',
+                  line, u'&lt;/svg&gt;'])
+
+  p Door number 3. I then wrote a Photoshop script to convert all those svg files to png. Done and done. Fun!

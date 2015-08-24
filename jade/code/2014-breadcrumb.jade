@@ -1,0 +1,32 @@
+
+#breadcrumb.content-head
+  h2.content-title A brief tour of Breadcrumb
+
+.content-section
+  p Breadcrumb is our proprietary, multi web application, cross-browser real-world gaming platform we built at The Go Game. It uses Flask and MongoDB on the back end and the client side applications are made with Ember.js. It is a powerful, complex aplication suite with lots of cool features. I have worked on many small and large pieces of Breadcrumb, adding features, fixing bugs, and writing tests for everything. #[br]
+
+  img(data-src="img/breadcrumb-create.png")
+  p.
+    #[b Create tool] #[br] 
+    Breadcrumb's Create tool is used by our creative game producers to create our unique flavor of engaging, fun, real world team building games. The interface includes an interactive map, made possible by our in-house developed, open source, #[a(href='https://github.com/gabesmed/ember-leaflet') ember-leaflet] library. I built the Groups tab which contains an intuitive drag-n-frop interface for editing mission sequences, the Lists tab for creating, sharing and managing lists of popular or categorized missions, the Search tab which includes a mission search feature, and the Styles tab which is used to create, edit, and apply custom skins to games.
+
+  img(data-src="img/breadcrumb-direct.png")
+  p.
+    #[b Direct tool] #[br]
+    This application is used to actually run our games. View logged in teams' progress, points, location, uploaded media and more in real-time. Manipulating teams' mission queues, adjusting smart routing parameters, sending messages to teams and more is possible with this robust tool that gives our game producers total control over the client's experience, making it easy to ensure they have a ton of fun.  
+
+  img#breadcrumb-play(data-src="img/breadcrumb-play.png")
+  p.
+    #[b Play app] #[br]
+    This is the client facing app that players see and interact with on their phones. We use trigger.io's Forge tool to compile our web app into a native iOS app. But the game is also playable through any web browser, so players can use their Androids and Blackberries. It is through this app that players receive instructions and missions, enter codes and answers, and take creative photos and videos.
+
+  p.
+    #[b Gallery] #[br]
+    After each game Breadcrumb automatically generates a password-protected public gallery so players can relive all the embarrasing and hilarious moments.
+
+  p.
+    #[b Local judging app] #[br]
+    When each game ends, all the hilarious photos and videos that players took are imported into the Local Judging application, where the game runner can present them at the ending venue for all to see.  There is a voting mechanism and points are tallied to determine winners. #[br]
+    The judging app is written in python and compiled to an OSX app with Py2App. It also has a feature that uses gphoto2 to pull media directly from phones, with a smart matching algorithm based on the timestamp.
+
+
