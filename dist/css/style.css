@@ -18,7 +18,7 @@ code { background-color: rgb(240,240,240); padding: 4px; }
 .hljs { padding: 1em; }
 
 .clearfix {}
-  .clearfix:before, .clearfix:after
+  .clearfix:before, .clearfix:after,
   .skill:before, .skill:after,
   .commits-section:before, .commits-section:after,
   .content-section:before, .content-section:after {
@@ -118,12 +118,10 @@ code { background-color: rgb(240,240,240); padding: 4px; }
   .about #shibusa { margin: -2em 0 2em 0; width: 100%; }
   .about .cmd-up { margin-top: 0; text-align: right; }
     .about .cmd-up:hover { cursor: pointer; opacity: 0.75; }
-  .about .skill p { 
-    vertical-align: top; }
-    .skill img { float: left; height: 75px; margin-right: 1em; 
-      visibility: hidden; width: 75px; }
+  .about .skill { display: flex; padding-bottom: 1em; }
+    .skill img { flex: 1 0 75px; height: 75px; margin: 0 1em 0 0; visibility: hidden; width: 75px; }
     .skill img.appear { visibility: visible; }
-    .skill p { margin: 1em 0; }
+    .skill p { flex: 1 1 100%; margin: 0; }
 
 .code { display: none; }
   .code #chrome-logo { margin: 0.5em 1em; height: 86px; }
