@@ -19,13 +19,11 @@ code { background-color: rgb(240,240,240); padding: 4px; }
 
 .clearfix {}
   .clearfix:before, .clearfix:after,
-  .skill:before, .skill:after,
   .commits-section:before, .commits-section:after,
   .content-section:before, .content-section:after {
     content: " ";
     display: table; }
   .clearfix:after,
-  .skill:after,
   .commits-section:after,
   .content-section:after {   
     clear: both; }
@@ -119,7 +117,7 @@ code { background-color: rgb(240,240,240); padding: 4px; }
   .about .cmd-up { margin-top: 0; text-align: right; }
     .about .cmd-up:hover { cursor: pointer; opacity: 0.75; }
   .about .skill { display: flex; padding-bottom: 1em; }
-    .skill img { flex: 1 0 75px; height: 75px; margin: 0 1em 0 0; visibility: hidden; width: 75px; }
+    .skill img { margin: 0 1em 0 0; visibility: hidden; width: 75px; }
     .skill img.appear { visibility: visible; }
     .skill p { flex: 1 1 100%; margin: 0; }
 
