@@ -149,4 +149,5 @@ code { background-color: rgb(240,240,240); padding: 4px; }
   .code #CA { float: left; margin-right: 1em; width: 20%; }
 
 .more { display: none; }
-  .more .links p { margin-bottom: 1em; }
+  .more .links .link { padding-bottom: 1em; }
+  .more .links p { margin-bottom: 0; }
