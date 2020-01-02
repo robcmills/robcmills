@@ -10,8 +10,10 @@ const keyframes = {
 const useStyles = createUseStyles({
 	header: {
 		color: 'white',
+		cursor: 'pointer',
 		display: 'flex',
 		height: 100,
+		padding: 10,
 		textAlign: 'center',
 	},
 	svg: {
