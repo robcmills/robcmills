@@ -10,6 +10,7 @@ const useStyles = createUseStyles({
 	app: {
 		display: 'flex',
 		flexDirection: 'column',
+		fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
 		height: '100%',
 		position: 'absolute',
 		width: '100%',

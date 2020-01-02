@@ -9,6 +9,7 @@ const keyframes = {
 
 const useStyles = createUseStyles({
 	header: {
+		background: 'black',
 		color: 'white',
 		cursor: 'pointer',
 		display: 'flex',

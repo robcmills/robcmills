@@ -7,6 +7,7 @@ const useStyles = createUseStyles({
 	tabs: {
 		background: 'dimgray',
 		display: 'flex',
+		flex: '0 0 auto',
 		height: 50,
 		justifyContent: 'center',
 	},

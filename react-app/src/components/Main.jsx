@@ -6,8 +6,10 @@ import { verylightgray } from './colors';
 const useStyles = createUseStyles({
 	main: {
 		background: verylightgray,
+		display: 'flex',
 		flex: 1,
-		paddingTop: 25,
+		justifyContent: 'center',
+		padding: [25, 0],
 	},
 });
 
