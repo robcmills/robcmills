@@ -16,15 +16,6 @@ const useStyles = createUseStyles({
 		background: 'white',
 		maxWidth: 800,
 	},
-	columns: {
-		display: 'flex',
-	},
-	column1: {
-		flex: 1,
-	},
-	column2: {
-		flex: 2,
-	},
 	portrait: {
 		float: 'left',
 		marginRight: 16,
