@@ -5,12 +5,11 @@ import { createUseStyles } from 'react-jss';
 import A from './A';
 import P from './P';
 
-import three_ds_logo from './img/3ds_logo.png';
 import aws_logo from './img/aws_logo.png';
 import bootstrap_logo from './img/bootstrap_logo.png';
 import bullet_logo from './img/bullet_logo.png';
-import cpp_logo from './img/cpp_logo.png';
 import coffeescript_logo from './img/coffeescript_logo.png';
+import cpp_logo from './img/cpp_logo.png';
 import css3_logo from './img/css3_logo.png';
 import django_logo from './img/django_logo.png';
 import ember_logo from './img/ember_logo.png';
@@ -19,12 +18,15 @@ import gtk_logo from './img/gtk_logo.png';
 import html5_logo from './img/html5_logo.png';
 import irr_logo from './img/irr_logo.png';
 import jade_logo from './img/jade_logo.png';
-import js_logo from './img/js_logo.png';
 import jinja_logo from './img/jinja_logo.png';
 import jquery_logo from './img/jquery_logo.png';
+import js_logo from './img/js_logo.png';
 import jsx_logo from './img/jsx_logo.png';
 import python_logo from './img/python_logo.png';
+import react_logo from './img/react_logo.png';
+import redux_logo from './img/redux_logo.png';
 import sass_logo from './img/sass_logo.png';
+import three_ds_logo from './img/3ds_logo.png';
 
 const useStyles = createUseStyles({
 	skills: {
@@ -184,6 +186,18 @@ export default function Skills() {
         <P><b>Python</b><br/>
         The swiss army knife of programming languages! Python is the first language I learned and I have since grown to like it more and more, even though it's slower than molasses north of The Wall in Westeros. It's got some handy libraries though, such as requests, lxml, BeautifulSoup, and Kivy.
         </P>
+      </div>
+
+      <div className={c.skill}>
+        <img src={react_logo} alt='react_logo' />
+        <P><b>React</b><br/>
+        When I started working at <A href="http://www.buildingconnected.com">buildingconnected.com</A> (October 2015) is when I learned React. Their construction bidding management platform was originally built with Backbone, but we migrated to React. Being a young startup, with a small team, I had the opportunity to get my hands very dirty, and I built hundreds of React components, large and small, both inside and outside of Backbone views. I love working with React, and pure functional components are a great leap forward for front-end development.</P>
+      </div>
+
+      <div className={c.skill}>
+        <img src={redux_logo} alt='redux_logo' />
+        <P><b>Redux</b><br/>
+        I worked extensively with Redux while working at <A href="http://www.buildingconnected.com">buildingconnected.com</A>. They used client state as a document store in their platform, as well as to store all application ui state in a very complex app.</P>
       </div>
 
       <div className={c.skill}>
