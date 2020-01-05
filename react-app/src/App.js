@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import Header from './components/Header';
 import Intro from './components/Intro';
 import Main from './components/Main';
+import More from './components/More';
 import Skills from './components/Skills';
 import Tabs from './components/Tabs';
 
@@ -24,6 +25,7 @@ export default function App() {
 	const main = {
 		intro: <Intro />,
 		skills: <Skills />,
+		more: <More />,
 	}[activeTab];
 
   return (
