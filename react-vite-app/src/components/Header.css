@@ -1,0 +1,33 @@
+.header {
+  background: black;
+  color: white;
+  cursor: pointer;
+  display: grid;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+.svg { height: 100px; }
+
+.g {
+   animation-duration: 5s;
+   stroke: white;
+   stroke-dasharray: 100px, 100px;
+   stroke-dashoffset: 0px;
+   stroke-width: 1;
+}
+
+@keyframes animation1 {
+  from { stroke-dashoffset: 100px };
+  to { stroke-dashoffset: 0px };
+}
+
+@keyframes animation2 {
+  from { stroke-dashoffset: 100px };
+  to { stroke-dashoffset: 0px };
+}
+
+.animation1 { animation-name: animation1; }
+
+.animation2 { animation-name: animation2; }
