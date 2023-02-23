@@ -1,0 +1,30 @@
+.tabs {
+  background: dimgray;
+  display: flex;
+  flex: 0 0 auto;
+  height: 50px;
+  justify-content: center;
+}
+
+.tab {
+  align-items: center;
+  background: black;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.tab:hover, .tab:focus {
+  background: dimgray;
+}
+
+.activeTab {
+  background: hsl(0, 0%, 90%);
+  color: black;
+}
+
+.activeTab:hover, .activeTab:focus {
+  background: hsl(0, 0%, 90%);
+}
