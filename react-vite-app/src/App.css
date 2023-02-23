@@ -1,4 +1,4 @@
-.App {
+.app {
   display: grid;
   grid-template-rows: auto auto 1fr;
   height: 100%;
@@ -6,4 +6,12 @@
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.main {
+  background: hsl(0, 0%, 90%);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 25px 0;
 }

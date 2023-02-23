@@ -1,13 +1,14 @@
 import { Dispatch, SetStateAction } from 'react';
+import { tabMap, TabName } from '../App';
 import './Tabs.css';
 
 interface TabsProps {
-  activeTab: string;
-  setActiveTab: Dispatch<SetStateAction<string>>;
+  activeTab: TabName;
+  setActiveTab: Dispatch<SetStateAction<TabName>>;
 }
 
 export function Tabs({ activeTab, setActiveTab }: TabsProps) {
-  const tabs = ['intro', 'skills', 'projects'].map((name) => {
+  const tabs = (Object.keys(tabMap) as TabName[]).map((name) => {
     const className = ['tab', activeTab === name ? 'activeTab' : ''].join(' ');
     const handleClick = () => setActiveTab(name);
     return (
