@@ -3,42 +3,14 @@ import intpLogo from '../assets/intp-logo.png';
 import me from '../assets/me-square.jpg';
 import shibusa from '../assets/shibusa.jpg';
 import wayThingsWork from '../assets/way-things-work.jpg';
-import { debounce2 } from '../util/debounce';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-
-const h1Ratio = 56 / 533;
 
 export function Intro() {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  useEffect(() => {
-    const handleResize = debounce2({
-      func: () =>
-        setWindowSize({ width: window.innerWidth, height: window.innerHeight }),
-      wait: 100,
-      option: { leading: true, trailing: true },
-    });
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-  const [h1FontSize, setH1FontSize] = useState('56px');
-
-  useLayoutEffect(() => {
-    const h1Width = h1Ref.current?.offsetWidth || 533;
-    setH1FontSize(`${Math.floor(h1Width * h1Ratio)}px`);
-  }, [windowSize]);
-
   return (
     <>
       <section className="title">
         <img className="portrait" src={me} alt="portrait" />
         <div>
-          <h1 ref={h1Ref} style={{ fontSize: h1FontSize }}>
-            Robert Carter Mills
-          </h1>
+          <h1>Robert Carter Mills</h1>
           <h3>coder, engineer, linguist, artist</h3>
         </div>
       </section>
