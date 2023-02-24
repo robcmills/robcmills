@@ -21,7 +21,9 @@ export function App() {
     <div className="app">
       <Header />
       <Tabs activeTab={tab} setActiveTab={setTab} />
-      <div className="main">{tabMap[tab]}</div>
+      <div className="main-background">
+        <div className="main-content">{tabMap[tab]}</div>
+      </div>
     </div>
   );
 }

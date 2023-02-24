@@ -1,0 +1,45 @@
+h1 {
+  background: black;
+  color: white;
+  font-size: 3em;
+  font-weight: 200;
+  margin: 0;
+  padding: 16px;
+}
+
+h3 {
+  color: hsl(0, 0%, 20%);
+  margin: 0;
+  padding: 16px;
+}
+
+section {
+  padding: 16px;
+}
+
+.title {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 0;
+}
+
+.portrait {
+  width: 100%;
+}
+
+.intp {
+  float: right;
+  margin-left: 16px;
+  width: 20%;
+}
+
+.wayThingsWork {
+  float: left;
+  margin-right: 16px;
+  width: 20%;
+}
+
+.shibusa {
+  margin-bottom: -6px;
+  width: 100%;
+}
