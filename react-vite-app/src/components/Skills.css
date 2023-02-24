@@ -1,0 +1,15 @@
+.skill {
+  padding: 16px;
+}
+ 
+.skill p {
+  margin: 0;
+}
+
+.skill img {
+  float: left;
+  height: 100px;
+  margin-right: 16px;
+  object-fit: contain;
+  width: 100px;
+}
