@@ -14,18 +14,18 @@
    animation-duration: 5s;
    stroke: white;
    stroke-dasharray: 100px, 100px;
-   stroke-dashoffset: 0px;
+   stroke-dashoffset: 0;
    stroke-width: 1;
 }
 
 @keyframes animation1 {
-  from { stroke-dashoffset: 100px };
-  to { stroke-dashoffset: 0px };
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 
 @keyframes animation2 {
-  from { stroke-dashoffset: 100 };
-  to { stroke-dashoffset: 0 };
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
 }
 
 .animation1 { animation-name: animation1; }
