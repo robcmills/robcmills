@@ -1,4 +1,4 @@
-import { tabMap, TabName } from '../App';
+import { tabMap, TabName } from '../hooks/useHashTabs';
 import './Tabs.css';
 
 interface TabsProps {
