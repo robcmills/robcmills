@@ -1,6 +1,9 @@
 import './Intro.css';
+import dell_inspiron from '../assets/dell-inspiron-mini-10.jpeg';
 import intpLogo from '../assets/intp-logo.png';
 import me from '../assets/me-square.jpg';
+import programming from '../assets/programming.jpg';
+import puppy_linux_logo from '../assets/puppy-linux-logo.png';
 import shibusa from '../assets/shibusa.jpg';
 import wayThingsWork from '../assets/way-things-work.jpg';
 
@@ -21,15 +24,46 @@ export function Intro() {
           engineer are inherent in my core personality. I have always drawn a
           deep sense of satisfaction out of learning and working with computers.
         </p>
+        <img className="dell" src={dell_inspiron} alt="dell-inspiron-mini-10" />
         <p>
-          In 2011 I was living in Japan and teaching English full time. It was
-          there that I discovered Linux and immediately fell in love with it. In
-          my spare time, I began teaching myself C++ by working through Bjarne
-          Stroustrup's seminal book,{' '}
-          <i>Programming - Principles and Practice Using C++</i>. Since then I
-          have continued to enjoy programming with a passion that continues
-          today.
+          It all started in 2011. I was living in Japan and teaching English
+          full time. I had left my high-end, custom built gaming PC in storage
+          back in California, and brought only a tiny little Dell Mini Netbook
+          with me. Unable to game on it, despite my efforts, I still used it a
+          ton to browse the internet, until one day I got the blue screen of
+          death. Windows had crashed. And it had no CD-ROM drive, so I couldn't
+          re-install Windows to fix it, as I had done with other computers. I
+          went to an internet cafe and searched for a solution. I had heard
+          about this thing called Linux, which was a free operating system. I
+          downloaded Puppy Linux to a USB stick, bootloaded it up, and fell in
+          love instantly.
         </p>
+        <img className="puppy" src={puppy_linux_logo} alt="puppy_linux_logo" />
+        <p>
+          That started me down a deep rabbit hole of trying different distros,
+          different window managers, customizing, learning more about the
+          command line, scripting, then python, then c, c++, and on and on for
+          the next decade. And I remember while reading a bash scripting
+          tutorial, the author made this analogy that really stuck with me:
+        </p>
+        <i>
+          <q>
+            Apple products are like a really nice playground. But you have to
+            pay for admission, and all the equipment is bolted to the ground.
+            Linux is like a big box of Tinker Toys, that comes with some
+            instructions, but you can build whatever you want with it.
+          </q>
+        </i>
+        <p>
+          I began teaching myself C++ by working through Bjarne Stroustrup's
+          seminal book, <i>Programming - Principles and Practice Using C++</i>.
+          After returning to the States, I worked as a dog walker during the day
+          and moonlighted as a hobbyist programmer until I finally landed a paid
+          tech internship, and the rest is history.
+        </p>
+        <div style={{ display: 'grid', margin: '32px' }}>
+          <img className="programming" src={programming} alt="programming" />
+        </div>
         <img className="intp" src={intpLogo} alt="intp" />
         <p>
           In terms of{' '}

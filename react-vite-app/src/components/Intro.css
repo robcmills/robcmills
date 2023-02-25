@@ -33,6 +33,22 @@ h3 {
   width: 100%;
 }
 
+.dell {
+  float: right;
+  width: 25%;
+}
+
+.puppy {
+  float: left;
+  margin-right: 16px;
+  width: 15%;
+}
+
+.programming {
+  width: 25%;
+  margin: 0 auto;
+}
+
 .intp {
   float: right;
   margin-left: 16px;
