@@ -23,6 +23,7 @@ import redux_logo from '../assets/redux_logo.png';
 import sass_logo from '../assets/sass_logo.png';
 import three_ds_logo from '../assets/3ds_logo.png';
 import typescript_logo from '../assets/typescript_logo.png';
+import vim_logo from '../assets/vim_logo.png';
 
 export function Skills() {
   return (
@@ -405,6 +406,32 @@ export function Skills() {
           <a href="https://github.com/type-challenges/type-challenges">
             github.com/type-challenges
           </a>
+        </p>
+      </div>
+
+      <div className="skill">
+        <img src={vim_logo} alt="vim_logo" />
+        <p>
+          <b>Vim</b>
+          <br />I can hardly even remember what got me into vim originally, it
+          was so long ago. But I do remember the feeling of excitement and
+          revelation when I realized how awesome and game changing vim was for
+          me. The concepts of modal editing, where single keystrokes executed
+          commands, and never having to leave the home row, just blew my mind at
+          the time. It forever changed not just the way I code, but the way I
+          expect to interact with computers generally. Most tasks, and
+          especially the most common ones,{' '}
+          <i>should never be more than a few keystrokes away.</i> I now use
+          Vimium, a browser plugin that lends vim-style navigation to the web,
+          tons of aliases in my bash_config, and a custom keyboard, that I
+          designed and built, with a number of macro keys and combos that
+          activate Hammerspoon scripts to accomplish very common actions (such
+          as changing applications, windows, etc.) with single keystrokes, to
+          navigate my computer daily with beautiful efficiency and fluency.
+          <br />
+          Throughout my career I have used original vim, Sublime Text, JetBrains
+          Intellij, VSCode, and now Neovim, but in every (non-vim) editor, I
+          always installed a vim plugin.
         </p>
       </div>
     </div>
