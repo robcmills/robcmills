@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 import { Header } from './components/Header';
 import { Intro } from './components/Intro';
@@ -15,15 +15,36 @@ export const tabMap = {
 export type TabName = keyof typeof tabMap;
 
 export function App() {
-  const [tab, setTab] = useState<TabName>('intro');
+  const [activeTab, setActiveTab] = useState<TabName>('intro');
+  const appRef = useRef<HTMLDivElement>(null);
+
+  const onChangeTab = (newTab: TabName) => {
+    window.location.hash = newTab;
+    setActiveTab(newTab);
+    if (appRef.current) appRef.current.scrollTop = 0;
+  };
+
+  const updateTabStateFromHash = useCallback(() => {
+    const hash = window.location.hash.slice(1);
+    const isValidTab = Object.keys(tabMap).includes(hash);
+    const newTab =
+      isValidTab && hash !== activeTab ? (hash as TabName) : 'intro';
+    onChangeTab(newTab);
+  }, [activeTab]);
+
+  useEffect(() => {
+    updateTabStateFromHash();
+    window.addEventListener('hashchange', updateTabStateFromHash);
+  }, []);
 
   return (
-    <div className="app">
+    <div className="app" ref={appRef}>
       <Header />
-      <Tabs activeTab={tab} setActiveTab={setTab} />
+      <Tabs activeTab={activeTab} onChangeTab={onChangeTab} />
       <div className="main-background">
-        <div className="main-content">{tabMap[tab]}</div>
+        <div className="main-content">{tabMap[activeTab]}</div>
       </div>
+      <Tabs activeTab={activeTab} onChangeTab={onChangeTab} />
     </div>
   );
 }
