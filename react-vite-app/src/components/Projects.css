@@ -1,12 +1,28 @@
+.projects h2 {
+  margin: 0;
+}
+
 .projects p {
   margin: 0;
   padding: 16px;
 }
 
 .projects section p {
-  padding: 0;
+  padding: 4px 0;
 }
 
 .projects section img {
   width: 100%;
+}
+
+section.codle {
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: 1fr 1.5fr;
+}
+
+@media (max-width: 500px) {
+  section.codle {
+    display: block;
+  }
 }

@@ -1,5 +1,6 @@
 import './Projects.css';
 import accutouch from '../assets/accutouch.png';
+import codle from '../assets/codle.png';
 import ember_todo from '../assets/ember_todo.png';
 import hex_game from '../assets/hex_game.png';
 import karn_keyboard from '../assets/karn_keyboard.jpeg';
@@ -19,6 +20,7 @@ export function Projects() {
       </p>
 
       <section>
+        <h2>The Karn Keyboard</h2>
         <img src={karn_keyboard} alt="karn_keyboard" />
         <p>I created a custom keyboard called the Karn.</p>
         <a href="https://github.com/robcmills/karn-keyboard">
@@ -33,8 +35,55 @@ export function Projects() {
         </p>
       </section>
 
+      <section className="codle">
+        <div>
+          <img src={codle} alt="codle" />
+        </div>
+        <div>
+          <h2>Codle</h2>
+          <p>
+            Codle is a Wordle clone for coders! Try to guess the keyword from
+            your favorite programming language.
+          </p>
+          <div>
+            <a href="https://codle-robcmills.vercel.app">
+              codle-robcmills.vercel.app
+            </a>
+          </div>
+          <div>
+            <a href="https://github.com/robcmills/codle">
+              github.com/robcmills/codle
+            </a>
+          </div>
+          <p>
+            Codle is a simple game, but was my excuse to try out the excellent{' '}
+            <a href="https://create.t3.gg">T3 Stack</a>. Codle is a full-stack,
+            database-backed web application. You can sign in, and every Codle
+            you complete is saved, so you never repeat the same keywords, you
+            can see your progress, and compete with friends for top spots on the
+            leaderboard.
+          </p>
+          <p>The stack consists of:</p>
+          <ul>
+            <li>TypeScript (Frontend and backend)</li>
+            <li>React (Frontend UI)</li>
+            <li>Tailwind (CSS)</li>
+            <li>Next.js (Full stack framework)</li>
+            <li>Vercel (Deployment platform service)</li>
+            <li>
+              tRPC (Full stack typesafe API) (this is the awesome sauce right
+              here)
+            </li>
+            <li>Prisma (ORM)</li>
+            <li>Planetscale (Database)</li>
+            <li>Clerk (Auth service)</li>
+          </ul>
+        </div>
+      </section>
+
       <section>
         <img src={staex} alt="staex" />
+        <h2>Staex</h2>
         <p>
           Simple abstract strategy board game I created, that involves moving
           your tokens around a hexagonal board and stacking hexes of your color
@@ -45,6 +94,7 @@ export function Projects() {
 
       <section>
         <img src={square_stacks} alt="square_stacks" />
+        <h2>Square Stacks</h2>
         <p>
           Implementation of Staex, where the computer ai runs a simple Monte
           Carlo search implemented in c++ and compiled to web assembly:
@@ -56,6 +106,7 @@ export function Projects() {
 
       <section>
         <img src={hex_game} alt="hex_game" />
+        <h2>SVG Hex Game</h2>
         <p>Simple chess variant game I created with React 15, svg and Redux:</p>
         <a href="http://robcmills.net/hex">robcmills.net/hex</a>
       </section>
